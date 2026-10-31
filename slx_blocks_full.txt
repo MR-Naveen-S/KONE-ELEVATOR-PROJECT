@@ -1,0 +1,1757 @@
+[290] Sum: Add
+    Position: [2535, -159, 2565, -101]
+    ZOrder: 100000
+    IconShape: rectangular
+    Inputs: +++
+
+[16] BusSelector: Bus
+Selector
+    Position: [1630, -96, 1635, 26]
+    ZOrder: 5909
+    OutputSignals: Rotor speed wm (rad/s),Electromagnetic torque Te (N*m),Stator current is_a (A),Stator current is_b (A),Stator current is_c (A),Rotor angle thetam (rad)
+
+[138] BusSelector: Bus
+Selector1
+    Position: [900, -419, 905, -381]
+    ZOrder: 100000
+    OutputSignals: PwmEnable
+
+[381] Scope: Car Speed and Torque
+    Position: [2050, -257, 2090, -168]
+    ZOrder: 100000
+    GraphicalSettings: {"Style":{"BackgroundColor":[0.12941176470588237,0.12941176470588237,0.12941176470588237],"AxesColor":[0.07058823529411765,0.07058823529411765,0.07058823529411765],"LabelsColor":[0.8509803921568627,0.8509803921568627,0.8509803921568627],"PreserveColors":false,"Visible":[true,true],"LineStyle":["-","-"],"LineWidth":[1.5,1.5],"BarWidth":[0.9,0.9],"LineColor":["auto","auto"],"LineFaceAlpha":[1,1],"LineEdgeAlpha":[1,1],"Marker":["none","none"],"FontSize":8.5,"LineTrueColor":[[1,0.9098039215686274,0.39215686274509803],[1,0.9098039215686274,0.39215686274509803]],"ChannelNames":"","DefaultLegendLabel":["Elevator Speed Gain","<Electromagnetic torque Te (N*m)>"],"PlotType":"Auto","NumLinesForDisplays":[1,1],"OffsetView":true,"LineLabels":["Elevator Speed Gain","<Electromagnetic torque Te (N*m)>"],"MinimizeControls":false,"LineCache":null},"MeasurementChannel":0,"AxesScalingProperties":{"AxesScaling":"Manual","ExpandOnly":true,"AxesScalingNumUpdates":10,"ScaleAxesLimitsAtStop":false,"YAxisDataRange":80,"AlignYAxis":"Center","AutoScaleXAxisLimits":false,"XAxisDataRange":100,"AlignXAxis":"Center"},"DisplayProperties":{"DisplayLayoutDimensions":[2,1],"DisplayPropertyDefaults":{"MaxYLimMag":60.76096177825591,"MaxYLimReal":60.76096177825591,"MinYLimMag":0,"MinYLimReal":-7.063903156860918,"PlotAsMagnitudePhase":false,"ShowGrid":true,"ShowLegend":true,"Title":"%<SignalLabel>","YLabel":""},"DisplayContentCache":{"Title":"","LinePropertiesCache":{},"UserDefinedChannelNames":{},"PlotMagPhase":0},"SerializedDisplays":[{"Title":"%<SignalLabel>","LinePropertiesCache":{},"UserDefinedChannelNames":{},"PlotMagPhase":0,"MaxYLimMag":0.3219884971367927,"MaxYLimReal":0.3219884971367927,"MinYLimMag":0,"MinYLimReal":-0.035777030330834736,"PlotAsMagnitudePhase":false,"ShowGrid":true,"ShowLegend":true,"YLabel":"","NumLines":1,"ShowContent":1,"Placement":0},{"Title":"%<SignalLabel>","LinePropertiesCache":{},"UserDefinedChannelNames":{},"PlotMagPhase":0,"MaxYLimMag":60.76096177825591,"MaxYLimReal":60.76096177825591,"MinYLimMag":0,"MinYLimReal":-7.063903156860918,"PlotAsMagnitudePhase":false,"ShowGrid":true,"ShowLegend":true,"YLabel":"","NumLines":1,"ShowContent":1,"Placement":1}],"ColorOrder":["auto","auto","auto","auto","auto","auto","auto","auto","auto","auto","auto","auto","auto","auto","auto","auto","auto","auto","auto","auto","auto","auto","auto","auto","auto","auto","auto","auto","auto","auto","auto","auto","auto","auto","auto","auto","auto","auto","auto","auto","auto","auto","auto","auto","auto","auto","auto","auto","auto","auto","auto","auto","auto","auto","auto","auto","auto","auto","auto","auto","auto","auto","auto","auto","auto","auto","auto","auto","auto","auto","auto","auto","auto","auto","auto","auto","auto","auto","auto","auto","auto","auto","auto","auto","auto","auto","auto","auto","auto","auto","auto","auto","auto","auto","auto","auto","auto","auto","auto","auto"]}}
+    WindowPosition: [0.000000,12.000000,1536.000000,841.000000,]
+    ScopeFrameLocation: window
+    WasSavedAsWebScope: on
+    Floating: off
+    MultipleDisplayCache: [{"MaxYLimMag":0.18916306327997173,"MaxYLimReal":0.18916306327997173,"MinYLimMag":0,"MinYLimReal":-0.021018648833083863,"PlotAsMagnitudePhase":false,"ShowGrid":true,"ShowLegend":true,"Title":"%<SignalLabel>","YLabel":""},{"MaxYLimMag":90.682945230896621,"MaxYLimReal":68.504850064549274,"MinYLimMag":0,"MinYLimReal":-90.682945230896621,"PlotAsMagnitudePhase":false,"ShowGrid":true,"ShowLegend":true,"Title":"%<SignalLabel>","YLabel":""}]
+    NumInputPorts: 2
+    LayoutDimensionsString: [2,1]
+    ShowLegend: on
+    ActiveDisplayYMinimum: -0.021018648833083863
+    ActiveDisplayYMaximum: 0.18916306327997173
+    DataLoggingVariableName: ScopeData1
+
+[316] Constant: Constant1
+    Position: [1530, -510, 1560, -480]
+    ZOrder: 100000
+    Value: 0.5
+
+[173] Constant: Constant2
+    Position: [1335, -550, 1365, -520]
+    ZOrder: 100000
+    Value: 700
+
+[191] Constant: Constant3
+    Position: [1020, -380, 1050, -350]
+    ZOrder: 100000
+    Value: 0
+
+[196] Constant: Constant4
+    Position: [1665, -460, 1695, -430]
+    ZOrder: 100000
+    Value: 339
+
+[199] Constant: Constant5
+    Position: [1700, -560, 1730, -530]
+    ZOrder: 100000
+    Value: 0
+
+[206] Constant: Constant6
+    Position: [1335, -310, 1365, -280]
+    ZOrder: 100000
+    Value: 0
+
+[383] Scope: DC Link Voltage Vdc
+    Position: [2020, -23, 2065, 63]
+    ZOrder: 100000
+    GraphicalSettings: {"GraphicalSettings":{"LegacySettings":true,"Style":{"Style":{"PlotType":"Auto"}}}}
+    WasSavedAsWebScope: on
+    Floating: off
+    NumInputPorts: 1
+    DataLoggingVariableName: ScopeData2
+
+[167] Demux: Demux
+    Position: [1220, -479, 1225, -441]
+    ZOrder: 100000
+    Outputs: 3
+
+[272] Demux: Demux1
+    Position: [2625, -29, 2630, 9]
+    ZOrder: 100000
+    Outputs: 3
+
+[276] Demux: Demux2
+    Position: [2440, 46, 2445, 84]
+    ZOrder: 100000
+    Outputs: 3
+
+[176] Reference: Discrete PID Controller
+    Position: [1465, -553, 1505, -517]
+    ZOrder: 100000
+    LibrarySourceBlock: simulink/Discrete/Discrete PID Controller
+    LibraryVersion: 10.3
+    SourceBlock: slpidlib/PID Controller
+    SourceType: PID 1dof
+    inst RTWMemSecFuncInitTerm: Inherit from model
+    inst RTWMemSecFuncExecute: Inherit from model
+    inst RTWMemSecDataConstants: Inherit from model
+    inst RTWMemSecDataInternal: Inherit from model
+    inst RTWMemSecDataParameters: Inherit from model
+    inst ContentPreviewEnabled: on
+    inst Controller: PI
+    inst Form: Parallel
+    inst TimeDomain: Discrete-time
+    inst UseExternalTs: off
+    inst SampleTime: 1e-4
+    inst IntegratorMethod: Forward Euler
+    inst FilterMethod: Forward Euler
+    inst ControllerParametersSource: internal
+    inst P: 0.5
+    inst I: 15
+    inst UseKiTs: off
+    inst D: 0
+    inst UseExternalDerivativeSource: off
+    inst N: 100
+    inst UseFilter: on
+    inst TunerSelectOption: Transfer Function Based (PID Tuner App)
+    inst ZeroCross: on
+    inst InitialConditionSource: internal
+    inst InitialConditionForIntegrator: 0
+    inst InitialConditionForFilter: 0
+    inst DifferentiatorICPrevScaledInput: 0
+    inst ExternalReset: none
+    inst IgnoreLimit: off
+    inst TrackingMode: off
+    inst Kt: 1
+    inst LimitOutput: on
+    inst SatLimitsSource: internal
+    inst UpperSaturationLimit: 20
+    inst LowerSaturationLimit: -20
+    inst LinearizeAsGain: off
+    inst AntiWindupMode: clamping
+    inst Kb: 1
+    inst LimitIntegrator: off
+    inst UpperIntegratorSaturationLimit: inf
+    inst LowerIntegratorSaturationLimit: -inf
+    inst RndMeth: Floor
+    inst SaturateOnIntegerOverflow: off
+    inst LockScale: off
+    inst PGainOutDataTypeStr: Inherit: Inherit via internal rule
+    inst PProdOutDataTypeStr: Inherit: Inherit via internal rule
+    inst POutMin: []
+    inst POutMax: []
+    inst IGainOutDataTypeStr: Inherit: Inherit via internal rule
+    inst IProdOutDataTypeStr: Inherit: Inherit via internal rule
+    inst IOutMin: []
+    inst IOutMax: []
+    inst DGainOutDataTypeStr: Inherit: Inherit via internal rule
+    inst DProdOutDataTypeStr: Inherit: Inherit via internal rule
+    inst DOutMin: []
+    inst DOutMax: []
+    inst NGainOutDataTypeStr: Inherit: Inherit via internal rule
+    inst NProdOutDataTypeStr: Inherit: Inherit via internal rule
+    inst NOutMin: []
+    inst NOutMax: []
+    inst SumOutDataTypeStr: Inherit: Inherit via internal rule
+    inst SumOutMin: []
+    inst SumOutMax: []
+    inst SaturationOutDataTypeStr: Inherit: Same as input
+    inst SaturationOutMin: []
+    inst SaturationOutMax: []
+    inst PParamDataTypeStr: Inherit: Inherit via internal rule
+    inst PParamMin: []
+    inst PParamMax: []
+    inst IParamDataTypeStr: Inherit: Inherit via internal rule
+    inst IParamMin: []
+    inst IParamMax: []
+    inst DParamDataTypeStr: Inherit: Inherit via internal rule
+    inst DParamMin: []
+    inst DParamMax: []
+    inst NParamDataTypeStr: Inherit: Inherit via internal rule
+    inst NParamMin: []
+    inst NParamMax: []
+    inst KbParamDataTypeStr: Inherit: Inherit via internal rule
+    inst KbParamMin: []
+    inst KbParamMax: []
+    inst KtParamDataTypeStr: Inherit: Inherit via internal rule
+    inst KtParamMin: []
+    inst KtParamMax: []
+    inst KbOutDataTypeStr: Inherit: Inherit via internal rule
+    inst KbOutMin: []
+    inst KbOutMax: []
+    inst KtOutDataTypeStr: Inherit: Inherit via internal rule
+    inst KtOutMin: []
+    inst KtOutMax: []
+    inst IntegratorOutDataTypeStr: Inherit: Inherit via internal rule
+    inst IntegratorOutMin: []
+    inst IntegratorOutMax: []
+    inst FilterOutDataTypeStr: Inherit: Inherit via internal rule
+    inst FilterOutMin: []
+    inst FilterOutMax: []
+    inst SumI1OutDataTypeStr: Inherit: Inherit via internal rule
+    inst SumI1OutMin: []
+    inst SumI1OutMax: []
+    inst SumI2OutDataTypeStr: Inherit: Inherit via internal rule
+    inst SumI2OutMin: []
+    inst SumI2OutMax: []
+    inst SumI3OutDataTypeStr: Inherit: Inherit via internal rule
+    inst SumI3OutMin: []
+    inst SumI3OutMax: []
+    inst SumI4OutDataTypeStr: Inherit: Inherit via internal rule
+    inst SumI4OutMin: []
+    inst SumI4OutMax: []
+    inst SumDOutDataTypeStr: Inherit: Inherit via internal rule
+    inst SumDOutMin: []
+    inst SumDOutMax: []
+    inst SumAccumDataTypeStr: Inherit: Inherit via internal rule
+    inst SumI1AccumDataTypeStr: Inherit: Inherit via internal rule
+    inst SumI2AccumDataTypeStr: Inherit: Inherit via internal rule
+    inst SumI3AccumDataTypeStr: Inherit: Inherit via internal rule
+    inst SumI4AccumDataTypeStr: Inherit: Inherit via internal rule
+    inst SumDAccumDataTypeStr: Inherit: Inherit via internal rule
+    inst DifferentiatorOutDataTypeStr: Inherit: Inherit via internal rule
+    inst DifferentiatorOutMin: []
+    inst DifferentiatorOutMax: []
+    inst FilterDiffNumProductOutputDataTypeStr: Inherit: Inherit via internal rule
+    inst FilterDiffDenProductOutputDataTypeStr: Inherit: Inherit via internal rule
+    inst FilterDiffNumAccumDataTypeStr: Inherit: Inherit via internal rule
+    inst FilterDiffDenAccumDataTypeStr: Inherit: Inherit via internal rule
+    inst FilterDiffOutCoefDataTypeStr: Inherit: Inherit via internal rule
+    inst FilterDiffOutCoefMin: []
+    inst FilterDiffOutCoefMax: []
+    inst ReciprocalOutDataTypeStr: Inherit: Inherit via internal rule
+    inst ReciprocalOutMin: []
+    inst ReciprocalOutMax: []
+    inst SumDenOutDataTypeStr: Inherit: Inherit via internal rule
+    inst SumDenOutMin: []
+    inst SumDenOutMax: []
+    inst SumNumOutDataTypeStr: Inherit: Inherit via internal rule
+    inst SumNumOutMin: []
+    inst SumNumOutMax: []
+    inst SumDenAccumDataTypeStr: Inherit: Inherit via internal rule
+    inst SumNumAccumDataTypeStr: Inherit: Inherit via internal rule
+    inst DivideOutDataTypeStr: Inherit: Inherit via internal rule
+    inst DivideOutMin: []
+    inst DivideOutMax: []
+    inst UdiffTsProdOutDataTypeStr: Inherit: Inherit via internal rule
+    inst UdiffTsProdOutMin: []
+    inst UdiffTsProdOutMax: []
+    inst NTsProdOutDataTypeStr: Inherit: Inherit via internal rule
+    inst NTsProdOutMin: []
+    inst NTsProdOutMax: []
+    inst UintegralTsProdOutDataTypeStr: Inherit: Inherit via internal rule
+    inst UintegralTsProdOutMin: []
+    inst UintegralTsProdOutMax: []
+    inst UngainTsProdOutDataTypeStr: Inherit: Inherit via internal rule
+    inst UngainTsProdOutMin: []
+    inst UngainTsProdOutMax: []
+    inst ClampingZeroOutDataTypeStr: Inherit: Inherit via back propagation
+    inst ClampingZeroOutMin: []
+    inst ClampingZeroOutMax: []
+    inst FilterDenConstantOutDataTypeStr: Inherit: Inherit via back propagation
+    inst FilterDenConstantOutMin: []
+    inst FilterDenConstantOutMax: []
+    inst PCopyOutDataTypeStr: Inherit: Inherit via back propagation
+    inst PCopyOutMin: []
+    inst PCopyOutMax: []
+    inst NCopyOutDataTypeStr: Inherit: Inherit via back propagation
+    inst NCopyOutMin: []
+    inst NCopyOutMax: []
+    inst IntegratorContinuousStateAttributes: ''
+    inst IntegratorStateMustResolveToSignalObject: off
+    inst IntegratorRTWStateStorageClass: Auto
+    inst FilterContinuousStateAttributes: ''
+    inst FilterStateMustResolveToSignalObject: off
+    inst FilterRTWStateStorageClass: Auto
+    inst ParallelPVariant: InternalParameters
+    inst IdealPVariant: Disabled
+    inst IVariant: InternalParameters
+    inst DVariant: Disabled
+    inst IntegratorVariant: Discrete
+    inst SatVariant: Enabled
+    inst AWVariant: DiscClampingParallel
+    inst PCopyVariant: Disabled
+    inst TRVariant: Disabled
+    inst FdbkBlocksVariant: Forward
+    inst IdealPFdbkVariant: Disabled
+    inst SatFdbkVariant: Disabled
+    inst DerivativeFilterVariant: Disabled
+    inst NVariant: Disabled
+    inst NCopyVariant: Disabled_SignalSpec
+    inst FilterICVariant: Disabled
+    inst IntegratorICVariant: InternalICs
+    inst ExternalResetVariant: Disabled
+    inst TRSumVariant: Passthrough
+    inst SumFdbkVariant: Disabled
+    inst SumVariant: Sum_PI
+    inst TsampFilterVariant: InternalTs
+    inst TsampNgainVariant: Passthrough
+    inst TsampIntegralVariant: Disabled_SignalSpec
+    inst ExternalSaturationOutDataTypeStr: Inherit: Same as second input
+    inst DerivativeSourceVariant: Disabled
+    inst InitialConditionSetting: Auto
+    inst PreIntVariant: InternalPreInt
+
+[189] Reference: Discrete PID Controller1
+    Position: [1135, -383, 1175, -347]
+    ZOrder: 100000
+    LibrarySourceBlock: simulink/Discrete/Discrete PID Controller
+    LibraryVersion: 10.3
+    SourceBlock: slpidlib/PID Controller
+    SourceType: PID 1dof
+    inst RTWMemSecFuncInitTerm: Inherit from model
+    inst RTWMemSecFuncExecute: Inherit from model
+    inst RTWMemSecDataConstants: Inherit from model
+    inst RTWMemSecDataInternal: Inherit from model
+    inst RTWMemSecDataParameters: Inherit from model
+    inst ContentPreviewEnabled: on
+    inst Controller: PI
+    inst Form: Parallel
+    inst TimeDomain: Discrete-time
+    inst UseExternalTs: off
+    inst SampleTime: 5e-6
+    inst IntegratorMethod: Forward Euler
+    inst FilterMethod: Forward Euler
+    inst ControllerParametersSource: internal
+    inst P: 15
+    inst I: 30
+    inst UseKiTs: off
+    inst D: 0
+    inst UseExternalDerivativeSource: off
+    inst N: 100
+    inst UseFilter: on
+    inst TunerSelectOption: Transfer Function Based (PID Tuner App)
+    inst ZeroCross: on
+    inst InitialConditionSource: internal
+    inst InitialConditionForIntegrator: 0
+    inst InitialConditionForFilter: 0
+    inst DifferentiatorICPrevScaledInput: 0
+    inst ExternalReset: none
+    inst IgnoreLimit: off
+    inst TrackingMode: off
+    inst Kt: 1
+    inst LimitOutput: on
+    inst SatLimitsSource: internal
+    inst UpperSaturationLimit: 350
+    inst LowerSaturationLimit: -350
+    inst LinearizeAsGain: off
+    inst AntiWindupMode: clamping
+    inst Kb: 1
+    inst LimitIntegrator: off
+    inst UpperIntegratorSaturationLimit: inf
+    inst LowerIntegratorSaturationLimit: -inf
+    inst RndMeth: Floor
+    inst SaturateOnIntegerOverflow: off
+    inst LockScale: off
+    inst PGainOutDataTypeStr: Inherit: Inherit via internal rule
+    inst PProdOutDataTypeStr: Inherit: Inherit via internal rule
+    inst POutMin: []
+    inst POutMax: []
+    inst IGainOutDataTypeStr: Inherit: Inherit via internal rule
+    inst IProdOutDataTypeStr: Inherit: Inherit via internal rule
+    inst IOutMin: []
+    inst IOutMax: []
+    inst DGainOutDataTypeStr: Inherit: Inherit via internal rule
+    inst DProdOutDataTypeStr: Inherit: Inherit via internal rule
+    inst DOutMin: []
+    inst DOutMax: []
+    inst NGainOutDataTypeStr: Inherit: Inherit via internal rule
+    inst NProdOutDataTypeStr: Inherit: Inherit via internal rule
+    inst NOutMin: []
+    inst NOutMax: []
+    inst SumOutDataTypeStr: Inherit: Inherit via internal rule
+    inst SumOutMin: []
+    inst SumOutMax: []
+    inst SaturationOutDataTypeStr: Inherit: Same as input
+    inst SaturationOutMin: []
+    inst SaturationOutMax: []
+    inst PParamDataTypeStr: Inherit: Inherit via internal rule
+    inst PParamMin: []
+    inst PParamMax: []
+    inst IParamDataTypeStr: Inherit: Inherit via internal rule
+    inst IParamMin: []
+    inst IParamMax: []
+    inst DParamDataTypeStr: Inherit: Inherit via internal rule
+    inst DParamMin: []
+    inst DParamMax: []
+    inst NParamDataTypeStr: Inherit: Inherit via internal rule
+    inst NParamMin: []
+    inst NParamMax: []
+    inst KbParamDataTypeStr: Inherit: Inherit via internal rule
+    inst KbParamMin: []
+    inst KbParamMax: []
+    inst KtParamDataTypeStr: Inherit: Inherit via internal rule
+    inst KtParamMin: []
+    inst KtParamMax: []
+    inst KbOutDataTypeStr: Inherit: Inherit via internal rule
+    inst KbOutMin: []
+    inst KbOutMax: []
+    inst KtOutDataTypeStr: Inherit: Inherit via internal rule
+    inst KtOutMin: []
+    inst KtOutMax: []
+    inst IntegratorOutDataTypeStr: Inherit: Inherit via internal rule
+    inst IntegratorOutMin: []
+    inst IntegratorOutMax: []
+    inst FilterOutDataTypeStr: Inherit: Inherit via internal rule
+    inst FilterOutMin: []
+    inst FilterOutMax: []
+    inst SumI1OutDataTypeStr: Inherit: Inherit via internal rule
+    inst SumI1OutMin: []
+    inst SumI1OutMax: []
+    inst SumI2OutDataTypeStr: Inherit: Inherit via internal rule
+    inst SumI2OutMin: []
+    inst SumI2OutMax: []
+    inst SumI3OutDataTypeStr: Inherit: Inherit via internal rule
+    inst SumI3OutMin: []
+    inst SumI3OutMax: []
+    inst SumI4OutDataTypeStr: Inherit: Inherit via internal rule
+    inst SumI4OutMin: []
+    inst SumI4OutMax: []
+    inst SumDOutDataTypeStr: Inherit: Inherit via internal rule
+    inst SumDOutMin: []
+    inst SumDOutMax: []
+    inst SumAccumDataTypeStr: Inherit: Inherit via internal rule
+    inst SumI1AccumDataTypeStr: Inherit: Inherit via internal rule
+    inst SumI2AccumDataTypeStr: Inherit: Inherit via internal rule
+    inst SumI3AccumDataTypeStr: Inherit: Inherit via internal rule
+    inst SumI4AccumDataTypeStr: Inherit: Inherit via internal rule
+    inst SumDAccumDataTypeStr: Inherit: Inherit via internal rule
+    inst DifferentiatorOutDataTypeStr: Inherit: Inherit via internal rule
+    inst DifferentiatorOutMin: []
+    inst DifferentiatorOutMax: []
+    inst FilterDiffNumProductOutputDataTypeStr: Inherit: Inherit via internal rule
+    inst FilterDiffDenProductOutputDataTypeStr: Inherit: Inherit via internal rule
+    inst FilterDiffNumAccumDataTypeStr: Inherit: Inherit via internal rule
+    inst FilterDiffDenAccumDataTypeStr: Inherit: Inherit via internal rule
+    inst FilterDiffOutCoefDataTypeStr: Inherit: Inherit via internal rule
+    inst FilterDiffOutCoefMin: []
+    inst FilterDiffOutCoefMax: []
+    inst ReciprocalOutDataTypeStr: Inherit: Inherit via internal rule
+    inst ReciprocalOutMin: []
+    inst ReciprocalOutMax: []
+    inst SumDenOutDataTypeStr: Inherit: Inherit via internal rule
+    inst SumDenOutMin: []
+    inst SumDenOutMax: []
+    inst SumNumOutDataTypeStr: Inherit: Inherit via internal rule
+    inst SumNumOutMin: []
+    inst SumNumOutMax: []
+    inst SumDenAccumDataTypeStr: Inherit: Inherit via internal rule
+    inst SumNumAccumDataTypeStr: Inherit: Inherit via internal rule
+    inst DivideOutDataTypeStr: Inherit: Inherit via internal rule
+    inst DivideOutMin: []
+    inst DivideOutMax: []
+    inst UdiffTsProdOutDataTypeStr: Inherit: Inherit via internal rule
+    inst UdiffTsProdOutMin: []
+    inst UdiffTsProdOutMax: []
+    inst NTsProdOutDataTypeStr: Inherit: Inherit via internal rule
+    inst NTsProdOutMin: []
+    inst NTsProdOutMax: []
+    inst UintegralTsProdOutDataTypeStr: Inherit: Inherit via internal rule
+    inst UintegralTsProdOutMin: []
+    inst UintegralTsProdOutMax: []
+    inst UngainTsProdOutDataTypeStr: Inherit: Inherit via internal rule
+    inst UngainTsProdOutMin: []
+    inst UngainTsProdOutMax: []
+    inst ClampingZeroOutDataTypeStr: Inherit: Inherit via back propagation
+    inst ClampingZeroOutMin: []
+    inst ClampingZeroOutMax: []
+    inst FilterDenConstantOutDataTypeStr: Inherit: Inherit via back propagation
+    inst FilterDenConstantOutMin: []
+    inst FilterDenConstantOutMax: []
+    inst PCopyOutDataTypeStr: Inherit: Inherit via back propagation
+    inst PCopyOutMin: []
+    inst PCopyOutMax: []
+    inst NCopyOutDataTypeStr: Inherit: Inherit via back propagation
+    inst NCopyOutMin: []
+    inst NCopyOutMax: []
+    inst IntegratorContinuousStateAttributes: ''
+    inst IntegratorStateMustResolveToSignalObject: off
+    inst IntegratorRTWStateStorageClass: Auto
+    inst FilterContinuousStateAttributes: ''
+    inst FilterStateMustResolveToSignalObject: off
+    inst FilterRTWStateStorageClass: Auto
+    inst ParallelPVariant: InternalParameters
+    inst IdealPVariant: Disabled
+    inst IVariant: InternalParameters
+    inst DVariant: Disabled
+    inst IntegratorVariant: Discrete
+    inst SatVariant: Enabled
+    inst AWVariant: DiscClampingParallel
+    inst PCopyVariant: Disabled
+    inst TRVariant: Disabled
+    inst FdbkBlocksVariant: Forward
+    inst IdealPFdbkVariant: Disabled
+    inst SatFdbkVariant: Disabled
+    inst DerivativeFilterVariant: Disabled
+    inst NVariant: Disabled
+    inst NCopyVariant: Disabled_SignalSpec
+    inst FilterICVariant: Disabled
+    inst IntegratorICVariant: InternalICs
+    inst ExternalResetVariant: Disabled
+    inst TRSumVariant: Passthrough
+    inst SumFdbkVariant: Disabled
+    inst SumVariant: Sum_PI
+    inst TsampFilterVariant: InternalTs
+    inst TsampNgainVariant: Passthrough
+    inst TsampIntegralVariant: Disabled_SignalSpec
+    inst ExternalSaturationOutDataTypeStr: Inherit: Same as second input
+    inst DerivativeSourceVariant: Disabled
+    inst InitialConditionSetting: Auto
+    inst PreIntVariant: InternalPreInt
+
+[184] Reference: Discrete PID Controller2
+    Position: [1500, -463, 1540, -427]
+    ZOrder: 100000
+    LibrarySourceBlock: simulink/Discrete/Discrete PID Controller
+    LibraryVersion: 10.3
+    SourceBlock: slpidlib/PID Controller
+    SourceType: PID 1dof
+    inst RTWMemSecFuncInitTerm: Inherit from model
+    inst RTWMemSecFuncExecute: Inherit from model
+    inst RTWMemSecDataConstants: Inherit from model
+    inst RTWMemSecDataInternal: Inherit from model
+    inst RTWMemSecDataParameters: Inherit from model
+    inst ContentPreviewEnabled: on
+    inst Controller: PI
+    inst Form: Parallel
+    inst TimeDomain: Discrete-time
+    inst UseExternalTs: off
+    inst SampleTime: 5e-6
+    inst IntegratorMethod: Forward Euler
+    inst FilterMethod: Forward Euler
+    inst ControllerParametersSource: internal
+    inst P: 15
+    inst I: 30
+    inst UseKiTs: off
+    inst D: 0
+    inst UseExternalDerivativeSource: off
+    inst N: 100
+    inst UseFilter: on
+    inst TunerSelectOption: Transfer Function Based (PID Tuner App)
+    inst ZeroCross: on
+    inst InitialConditionSource: internal
+    inst InitialConditionForIntegrator: 0
+    inst InitialConditionForFilter: 0
+    inst DifferentiatorICPrevScaledInput: 0
+    inst ExternalReset: none
+    inst IgnoreLimit: off
+    inst TrackingMode: off
+    inst Kt: 1
+    inst LimitOutput: on
+    inst SatLimitsSource: internal
+    inst UpperSaturationLimit: 350
+    inst LowerSaturationLimit: -350
+    inst LinearizeAsGain: off
+    inst AntiWindupMode: clamping
+    inst Kb: 1
+    inst LimitIntegrator: off
+    inst UpperIntegratorSaturationLimit: inf
+    inst LowerIntegratorSaturationLimit: -inf
+    inst RndMeth: Floor
+    inst SaturateOnIntegerOverflow: off
+    inst LockScale: off
+    inst PGainOutDataTypeStr: Inherit: Inherit via internal rule
+    inst PProdOutDataTypeStr: Inherit: Inherit via internal rule
+    inst POutMin: []
+    inst POutMax: []
+    inst IGainOutDataTypeStr: Inherit: Inherit via internal rule
+    inst IProdOutDataTypeStr: Inherit: Inherit via internal rule
+    inst IOutMin: []
+    inst IOutMax: []
+    inst DGainOutDataTypeStr: Inherit: Inherit via internal rule
+    inst DProdOutDataTypeStr: Inherit: Inherit via internal rule
+    inst DOutMin: []
+    inst DOutMax: []
+    inst NGainOutDataTypeStr: Inherit: Inherit via internal rule
+    inst NProdOutDataTypeStr: Inherit: Inherit via internal rule
+    inst NOutMin: []
+    inst NOutMax: []
+    inst SumOutDataTypeStr: Inherit: Inherit via internal rule
+    inst SumOutMin: []
+    inst SumOutMax: []
+    inst SaturationOutDataTypeStr: Inherit: Same as input
+    inst SaturationOutMin: []
+    inst SaturationOutMax: []
+    inst PParamDataTypeStr: Inherit: Inherit via internal rule
+    inst PParamMin: []
+    inst PParamMax: []
+    inst IParamDataTypeStr: Inherit: Inherit via internal rule
+    inst IParamMin: []
+    inst IParamMax: []
+    inst DParamDataTypeStr: Inherit: Inherit via internal rule
+    inst DParamMin: []
+    inst DParamMax: []
+    inst NParamDataTypeStr: Inherit: Inherit via internal rule
+    inst NParamMin: []
+    inst NParamMax: []
+    inst KbParamDataTypeStr: Inherit: Inherit via internal rule
+    inst KbParamMin: []
+    inst KbParamMax: []
+    inst KtParamDataTypeStr: Inherit: Inherit via internal rule
+    inst KtParamMin: []
+    inst KtParamMax: []
+    inst KbOutDataTypeStr: Inherit: Inherit via internal rule
+    inst KbOutMin: []
+    inst KbOutMax: []
+    inst KtOutDataTypeStr: Inherit: Inherit via internal rule
+    inst KtOutMin: []
+    inst KtOutMax: []
+    inst IntegratorOutDataTypeStr: Inherit: Inherit via internal rule
+    inst IntegratorOutMin: []
+    inst IntegratorOutMax: []
+    inst FilterOutDataTypeStr: Inherit: Inherit via internal rule
+    inst FilterOutMin: []
+    inst FilterOutMax: []
+    inst SumI1OutDataTypeStr: Inherit: Inherit via internal rule
+    inst SumI1OutMin: []
+    inst SumI1OutMax: []
+    inst SumI2OutDataTypeStr: Inherit: Inherit via internal rule
+    inst SumI2OutMin: []
+    inst SumI2OutMax: []
+    inst SumI3OutDataTypeStr: Inherit: Inherit via internal rule
+    inst SumI3OutMin: []
+    inst SumI3OutMax: []
+    inst SumI4OutDataTypeStr: Inherit: Inherit via internal rule
+    inst SumI4OutMin: []
+    inst SumI4OutMax: []
+    inst SumDOutDataTypeStr: Inherit: Inherit via internal rule
+    inst SumDOutMin: []
+    inst SumDOutMax: []
+    inst SumAccumDataTypeStr: Inherit: Inherit via internal rule
+    inst SumI1AccumDataTypeStr: Inherit: Inherit via internal rule
+    inst SumI2AccumDataTypeStr: Inherit: Inherit via internal rule
+    inst SumI3AccumDataTypeStr: Inherit: Inherit via internal rule
+    inst SumI4AccumDataTypeStr: Inherit: Inherit via internal rule
+    inst SumDAccumDataTypeStr: Inherit: Inherit via internal rule
+    inst DifferentiatorOutDataTypeStr: Inherit: Inherit via internal rule
+    inst DifferentiatorOutMin: []
+    inst DifferentiatorOutMax: []
+    inst FilterDiffNumProductOutputDataTypeStr: Inherit: Inherit via internal rule
+    inst FilterDiffDenProductOutputDataTypeStr: Inherit: Inherit via internal rule
+    inst FilterDiffNumAccumDataTypeStr: Inherit: Inherit via internal rule
+    inst FilterDiffDenAccumDataTypeStr: Inherit: Inherit via internal rule
+    inst FilterDiffOutCoefDataTypeStr: Inherit: Inherit via internal rule
+    inst FilterDiffOutCoefMin: []
+    inst FilterDiffOutCoefMax: []
+    inst ReciprocalOutDataTypeStr: Inherit: Inherit via internal rule
+    inst ReciprocalOutMin: []
+    inst ReciprocalOutMax: []
+    inst SumDenOutDataTypeStr: Inherit: Inherit via internal rule
+    inst SumDenOutMin: []
+    inst SumDenOutMax: []
+    inst SumNumOutDataTypeStr: Inherit: Inherit via internal rule
+    inst SumNumOutMin: []
+    inst SumNumOutMax: []
+    inst SumDenAccumDataTypeStr: Inherit: Inherit via internal rule
+    inst SumNumAccumDataTypeStr: Inherit: Inherit via internal rule
+    inst DivideOutDataTypeStr: Inherit: Inherit via internal rule
+    inst DivideOutMin: []
+    inst DivideOutMax: []
+    inst UdiffTsProdOutDataTypeStr: Inherit: Inherit via internal rule
+    inst UdiffTsProdOutMin: []
+    inst UdiffTsProdOutMax: []
+    inst NTsProdOutDataTypeStr: Inherit: Inherit via internal rule
+    inst NTsProdOutMin: []
+    inst NTsProdOutMax: []
+    inst UintegralTsProdOutDataTypeStr: Inherit: Inherit via internal rule
+    inst UintegralTsProdOutMin: []
+    inst UintegralTsProdOutMax: []
+    inst UngainTsProdOutDataTypeStr: Inherit: Inherit via internal rule
+    inst UngainTsProdOutMin: []
+    inst UngainTsProdOutMax: []
+    inst ClampingZeroOutDataTypeStr: Inherit: Inherit via back propagation
+    inst ClampingZeroOutMin: []
+    inst ClampingZeroOutMax: []
+    inst FilterDenConstantOutDataTypeStr: Inherit: Inherit via back propagation
+    inst FilterDenConstantOutMin: []
+    inst FilterDenConstantOutMax: []
+    inst PCopyOutDataTypeStr: Inherit: Inherit via back propagation
+    inst PCopyOutMin: []
+    inst PCopyOutMax: []
+    inst NCopyOutDataTypeStr: Inherit: Inherit via back propagation
+    inst NCopyOutMin: []
+    inst NCopyOutMax: []
+    inst IntegratorContinuousStateAttributes: ''
+    inst IntegratorStateMustResolveToSignalObject: off
+    inst IntegratorRTWStateStorageClass: Auto
+    inst FilterContinuousStateAttributes: ''
+    inst FilterStateMustResolveToSignalObject: off
+    inst FilterRTWStateStorageClass: Auto
+    inst ParallelPVariant: InternalParameters
+    inst IdealPVariant: Disabled
+    inst IVariant: InternalParameters
+    inst DVariant: Disabled
+    inst IntegratorVariant: Discrete
+    inst SatVariant: Enabled
+    inst AWVariant: DiscClampingParallel
+    inst PCopyVariant: Disabled
+    inst TRVariant: Disabled
+    inst FdbkBlocksVariant: Forward
+    inst IdealPFdbkVariant: Disabled
+    inst SatFdbkVariant: Disabled
+    inst DerivativeFilterVariant: Disabled
+    inst NVariant: Disabled
+    inst NCopyVariant: Disabled_SignalSpec
+    inst FilterICVariant: Disabled
+    inst IntegratorICVariant: InternalICs
+    inst ExternalResetVariant: Disabled
+    inst TRSumVariant: Passthrough
+    inst SumFdbkVariant: Disabled
+    inst SumVariant: Sum_PI
+    inst TsampFilterVariant: InternalTs
+    inst TsampNgainVariant: Passthrough
+    inst TsampIntegralVariant: Disabled_SignalSpec
+    inst ExternalSaturationOutDataTypeStr: Inherit: Same as second input
+    inst DerivativeSourceVariant: Disabled
+    inst InitialConditionSetting: Auto
+    inst PreIntVariant: InternalPreInt
+
+[339] From: Elevator Speed From
+    Position: [2440, -565, 2500, -535]
+    ZOrder: 100000
+    GotoTag: N_wm
+
+[340] Gain: Elevator Speed Gain
+    Position: [2530, -565, 2635, -535]
+    ZOrder: 100000
+    Gain: (2*pi/60)*r/G
+
+[432] FromWorkspace: Elevator Speed Profile
+    Position: [1280, 55, 1370, 85]
+    ZOrder: 100000
+    VariableName: speed_cmd
+
+[352] Goto: Elevator Speed Tag
+    Position: [2665, -565, 2725, -535]
+    ZOrder: 100000
+    GotoTag: ElevatorSpeed_mps
+    TagVisibility: global
+
+[417] Gain: ElevatorLoad_2wm
+    Position: [2085, -565, 2145, -535]
+    ZOrder: 100000
+    Gain: 2
+
+[419] Gain: ElevatorLoad_Coulomb
+    Position: [2275, -565, 2335, -535]
+    ZOrder: 100000
+
+[418] Saturate: ElevatorLoad_CoulombSat
+    Position: [2175, -565, 2245, -535]
+    ZOrder: 100000
+    UpperLimit: 1
+    LowerLimit: -1
+
+[421] Sum: ElevatorLoad_FrictionSum
+    Position: [2365, -535, 2395, -485]
+    ZOrder: 100000
+
+[425] Sum: ElevatorLoad_Sum
+    Position: [2565, -495, 2595, -445]
+    ZOrder: 100000
+
+[424] Switch: ElevatorLoad_Switch
+    Position: [2445, -440, 2505, -340]
+    ZOrder: 100000
+    InputSameDT: off
+    SaturateOnIntegerOverflow: off
+
+[422] Constant: ElevatorLoad_Tmot
+    Position: [2340, -440, 2410, -410]
+    ZOrder: 100000
+    Value: Tgravity/eta
+
+[423] Constant: ElevatorLoad_Tover
+    Position: [2340, -370, 2410, -340]
+    ZOrder: 100000
+    Value: -Tgravity*eta
+
+[420] Gain: ElevatorLoad_Viscous
+    Position: [2140, -475, 2200, -445]
+    ZOrder: 100000
+    Gain: 0.005
+
+[416] From: ElevatorLoad_wm
+    Position: [1995, -565, 2055, -535]
+    ZOrder: 100000
+    GotoTag: N_wm
+
+[114] From: From
+    Position: [630, -380, 670, -350]
+    ZOrder: 100000
+    GotoTag: Vdc
+
+[427] From: From1
+    Position: [1460, -100, 1500, -70]
+    ZOrder: 100000
+    GotoTag: Tm
+
+[160] From: From10
+    Position: [1015, -510, 1055, -480]
+    ZOrder: 100000
+    NameLocation: top
+    GotoTag: Iabc
+
+[110] From: From13
+    Position: [620, -515, 675, -485]
+    ZOrder: 100000
+    GotoTag: I_abc
+
+[111] From: From14
+    Position: [625, -470, 680, -440]
+    ZOrder: 100000
+    GotoTag: N_wm
+
+[161] From: From15
+    Position: [1020, -555, 1060, -525]
+    ZOrder: 100000
+    GotoTag: Vabc
+
+[164] From: From16
+    Position: [1020, -470, 1075, -440]
+    ZOrder: 100000
+    GotoTag: Theta
+
+[179] From: From17
+    Position: [1330, -510, 1370, -480]
+    ZOrder: 100000
+    GotoTag: Vdc
+
+[180] From: From18
+    Position: [1345, -460, 1400, -430]
+    ZOrder: 100000
+    GotoTag: id_ref
+
+[182] From: From19
+    Position: [1345, -425, 1385, -395]
+    ZOrder: 100000
+    GotoTag: id
+
+[120] From: From2
+    Position: [1375, -175, 1415, -145]
+    ZOrder: 100000
+    GotoTag: g
+
+[187] From: From20
+    Position: [1015, -345, 1055, -315]
+    ZOrder: 100000
+    GotoTag: iq
+
+[197] From: From21
+    Position: [1665, -425, 1705, -395]
+    ZOrder: 100000
+    GotoTag: ud
+
+[200] From: From22
+    Position: [1700, -525, 1740, -495]
+    ZOrder: 100000
+    GotoTag: uq
+
+[204] From: From23
+    Position: [1335, -380, 1375, -350]
+    ZOrder: 100000
+    GotoTag: Vd
+
+[205] From: From24
+    Position: [1335, -345, 1375, -315]
+    ZOrder: 100000
+    GotoTag: Vq
+
+[208] From: From25
+    Position: [1335, -265, 1390, -235]
+    ZOrder: 100000
+    GotoTag: Theta
+
+[212] From: From26
+    Position: [870, -130, 925, -100]
+    ZOrder: 100000
+    GotoTag: g_afe
+
+[256] From: From42
+    Position: [2530, -250, 2570, -220]
+    ZOrder: 100000
+    GotoTag: Vabc
+
+[257] From: From43
+    Position: [2530, -205, 2570, -175]
+    ZOrder: 100000
+    NameLocation: top
+    GotoTag: Iabc
+
+[267] From: From49
+    Position: [2370, 50, 2410, 80]
+    ZOrder: 100000
+    GotoTag: Vabc
+
+[270] From: From50
+    Position: [2555, -25, 2595, 5]
+    ZOrder: 100000
+    NameLocation: top
+    GotoTag: Iabc
+
+[281] From: From51
+    Position: [2355, -255, 2395, -225]
+    ZOrder: 100000
+    GotoTag: Va
+
+[282] From: From52
+    Position: [2355, -215, 2395, -185]
+    ZOrder: 100000
+    GotoTag: Ia
+
+[283] From: From53
+    Position: [2355, -175, 2395, -145]
+    ZOrder: 100000
+    GotoTag: Vb
+
+[284] From: From54
+    Position: [2355, -135, 2395, -105]
+    ZOrder: 100000
+    GotoTag: Ib
+
+[286] From: From55
+    Position: [2355, -95, 2395, -65]
+    ZOrder: 100000
+    GotoTag: Vc
+
+[287] From: From56
+    Position: [2355, -55, 2395, -25]
+    ZOrder: 100000
+    GotoTag: Ic
+
+[139] From: From8
+    Position: [615, -425, 655, -395]
+    ZOrder: 100000
+    GotoTag: Teta_m
+
+[379] From: FromGafe
+    Position: [2125, 70, 2185, 100]
+    ZOrder: 100000
+    GotoTag: g_afe
+
+[374] From: FromId
+    Position: [2130, -245, 2190, -215]
+    ZOrder: 100000
+    GotoTag: id
+
+[375] From: FromIdRef
+    Position: [2130, -195, 2190, -165]
+    ZOrder: 100000
+    GotoTag: id_ref
+
+[378] From: FromPWM
+    Position: [2125, 20, 2185, 50]
+    ZOrder: 100000
+    GotoTag: PWM
+
+[372] From: FromPgrid
+    Position: [1935, -110, 1995, -80]
+    ZOrder: 100000
+    GotoTag: Pgrid
+
+[370] From: FromSpeed
+    Position: [1935, -250, 1995, -220]
+    ZOrder: 100000
+    GotoTag: ElevatorSpeed_mps
+    TagVisibility: global
+
+[371] From: FromTe
+    Position: [1935, -205, 1995, -175]
+    ZOrder: 100000
+    GotoTag: Te
+
+[377] From: FromUd
+    Position: [2110, -65, 2170, -35]
+    ZOrder: 100000
+    GotoTag: ud
+
+[376] From: FromUq
+    Position: [2110, -110, 2170, -80]
+    ZOrder: 100000
+    GotoTag: uq
+
+[373] From: FromVdc
+    Position: [1935, 5, 1995, 35]
+    ZOrder: 100000
+    GotoTag: Vdc
+
+[209] Gain: Gain3
+    Position: [1550, -372, 1605, -328]
+    ZOrder: 100000
+    Gain: 1/350
+
+[113] Goto: Goto
+    Position: [1290, -25, 1330, 5]
+    ZOrder: 100000
+    GotoTag: Vdc
+
+[38] Goto: Goto1
+    Position: [1700, 50, 1740, 80]
+    ZOrder: 100000
+    GotoTag: Teta_m
+
+[163] Goto: Goto11
+    Position: [1195, -550, 1250, -520]
+    ZOrder: 100000
+    GotoTag: Theta
+
+[168] Goto: Goto12
+    Position: [1260, -500, 1300, -470]
+    ZOrder: 100000
+    GotoTag: id
+
+[170] Goto: Goto13
+    Position: [1260, -465, 1300, -435]
+    ZOrder: 100000
+    GotoTag: iq
+
+[178] Goto: Goto14
+    Position: [1630, -550, 1685, -520]
+    ZOrder: 100000
+    GotoTag: id_ref
+
+[185] Goto: Goto15
+    Position: [1580, -460, 1620, -430]
+    ZOrder: 100000
+    GotoTag: ud
+
+[190] Goto: Goto16
+    Position: [1205, -380, 1245, -350]
+    ZOrder: 100000
+    GotoTag: uq
+
+[198] Goto: Goto17
+    Position: [1780, -460, 1820, -430]
+    ZOrder: 100000
+    GotoTag: Vd
+
+[201] Goto: Goto18
+    Position: [1815, -560, 1855, -530]
+    ZOrder: 100000
+    GotoTag: Vq
+
+[211] Goto: Goto19
+    Position: [1795, -365, 1850, -335]
+    ZOrder: 100000
+    GotoTag: g_afe
+
+[119] Goto: Goto2
+    Position: [900, -525, 940, -495]
+    ZOrder: 100000
+    GotoTag: g
+
+[228] Goto: Goto20
+    Position: [1760, -80, 1800, -50]
+    ZOrder: 100000
+    GotoTag: Te
+
+[273] Goto: Goto22
+    Position: [2690, -55, 2730, -25]
+    ZOrder: 100000
+    GotoTag: Ia
+
+[274] Goto: Goto23
+    Position: [2690, -10, 2730, 20]
+    ZOrder: 100000
+    GotoTag: Ib
+
+[275] Goto: Goto24
+    Position: [2690, 35, 2730, 65]
+    ZOrder: 100000
+    GotoTag: Ic
+
+[277] Goto: Goto25
+    Position: [2495, 15, 2535, 45]
+    ZOrder: 100000
+    GotoTag: Va
+
+[278] Goto: Goto26
+    Position: [2495, 60, 2535, 90]
+    ZOrder: 100000
+    GotoTag: Vb
+
+[279] Goto: Goto27
+    Position: [2495, 105, 2535, 135]
+    ZOrder: 100000
+    GotoTag: Vc
+
+[291] Goto: Goto28
+    Position: [2685, -145, 2725, -115]
+    ZOrder: 100000
+    GotoTag: Pgrid
+
+[294] Goto: Goto29
+    Position: [2660, -240, 2700, -210]
+    ZOrder: 100000
+    GotoTag: Pabc
+
+[40] Goto: Goto3
+    Position: [1800, 0, 1855, 30]
+    ZOrder: 100000
+    GotoTag: I_abc
+
+[426] Goto: Goto4
+    Position: [2660, -485, 2700, -455]
+    ZOrder: 100000
+    GotoTag: Tm
+
+[64] Goto: Goto5
+    Position: [1690, -110, 1745, -80]
+    ZOrder: 100000
+    GotoTag: N_wm
+
+[133] Goto: Goto6
+    Position: [935, -415, 975, -385]
+    ZOrder: 100000
+    GotoTag: PWM
+
+[156] Goto: Goto8
+    Position: [955, 50, 995, 80]
+    ZOrder: 100000
+    GotoTag: Vabc
+
+[157] Goto: Goto9
+    Position: [850, -95, 890, -65]
+    ZOrder: 100000
+    BlockMirror: on
+    NameLocation: top
+    GotoTag: Iabc
+
+[382] Scope: Grid Power Pgrid
+    Position: [2020, -135, 2065, -55]
+    ZOrder: 100000
+    GraphicalSettings: {"GraphicalSettings":{"LegacySettings":true,"Style":{"Style":{"PlotType":"Auto"}}}}
+    WasSavedAsWebScope: on
+    Floating: off
+    NumInputPorts: 1
+    DataLoggingVariableName: ScopeData3
+
+[293] Reference: Low-Pass Filter
+(Discrete or Continuous)
+    Position: [2590, -155, 2660, -105]
+    ZOrder: 100000
+    HideAutomaticName: off
+    LibrarySourceBlock: ee_sl_lib/General Control/Low-Pass Filter
+(Discrete or Continuous)
+    LibraryVersion: 10.3
+    SourceBlock: eeGeneralControl/Low-Pass Filter
+(Discrete or Continuous)
+    SourceType: Low-Pass Filter (Discrete or Continuous)
+    inst RTWMemSecFuncInitTerm: Inherit from model
+    inst RTWMemSecFuncExecute: Inherit from model
+    inst RTWMemSecDataConstants: Inherit from model
+    inst RTWMemSecDataInternal: Inherit from model
+    inst RTWMemSecDataParameters: Inherit from model
+    inst ContentPreviewEnabled: on
+    inst K: 1
+    inst T: 0.1
+    inst B: inf
+    inst A: -inf
+    inst init_option: Inherited from block input
+    inst x0: 0
+    inst Ts: -1
+
+[315] ManualSwitch: Manual Switch
+    Position: [1580, -543, 1610, -507]
+    ZOrder: 100000
+
+[12] Reference: Motor Inverter
+    Position: [1350, -101, 1440, 36]
+    ZOrder: 5905
+    BlockMirror: on
+    NameLocation: top
+    LibrarySourceBlock: sps_lib/Power Electronics/Universal Bridge
+    LibraryVersion: 9.0
+    SourceBlock: spsUniversalBridgeLib/Universal Bridge
+    SourceType: Universal Bridge
+    inst RTWMemSecFuncInitTerm: Inherit from model
+    inst RTWMemSecFuncExecute: Inherit from model
+    inst RTWMemSecDataConstants: Inherit from model
+    inst RTWMemSecDataInternal: Inherit from model
+    inst RTWMemSecDataParameters: Inherit from model
+    inst ContentPreviewEnabled: on
+    inst Arms: 3
+    inst SnubberResistance: 1e5
+    inst SnubberCapacitance: inf
+    inst Device: IGBT / Diodes
+    inst Ron: 1e-3
+    inst Lon: 0
+    inst ForwardVoltages: [  0  0  ]
+    inst ForwardVoltage: 0
+    inst GTOparameters: [ 10e-6 , 20e-6 ]
+    inst IGBTparameters: [ 1e-6 , 2e-6 ]
+    inst Measurements: None
+    inst Measurements_2: None
+    inst converterType: Rectifier
+
+[203] Mux: Mux
+    Position: [1410, -382, 1415, -278]
+    ZOrder: 100000
+    Inputs: 3
+    DisplayOption: bar
+
+[46] Mux: Mux2
+    Position: [1760, -15, 1770, 45]
+    ZOrder: 100000
+    Inputs: 3
+    DisplayOption: bar
+
+[162] Reference: PLL
+(3ph)
+    Position: [1115, -560, 1165, -525]
+    ZOrder: 100000
+    LibrarySourceBlock: sps_lib/Control/PLL
+(3ph)
+    LibraryVersion: 9.0
+    FontName: Arial
+    SourceBlock: spsPLL3phLib/PLL
+(3ph)
+    SourceType: PLL (3ph)
+    inst RTWMemSecFuncInitTerm: Inherit from model
+    inst RTWMemSecFuncExecute: Inherit from model
+    inst RTWMemSecDataConstants: Inherit from model
+    inst RTWMemSecDataInternal: Inherit from model
+    inst RTWMemSecDataParameters: Inherit from model
+    inst ContentPreviewEnabled: on
+    inst Fmin: 45
+    inst Par_Init: [0, 50]
+    inst ParK: [180, 3200, 1]
+    inst TcD: 1e-4
+    inst MaxRateChangeFreq: 12
+    inst FilterCutOffFreq: 25
+    inst Ts: 1e-4
+    inst AGC: on
+
+[108] Reference: PMSM Field-Oriented
+Control
+    Position: [720, -567, 870, -343]
+    ZOrder: 100000
+    HideAutomaticName: off
+    LibrarySourceBlock: ee_sl_lib/PMSM Control/PMSM Field-Oriented
+Control
+    LibraryVersion: 10.0
+    SourceBlock: eePmsmFieldOrientedControl/PMSM Field-Oriented
+Control
+    SourceType: PMSM Field-Oriented Control
+    inst RTWMemSecFuncInitTerm: Inherit from model
+    inst RTWMemSecFuncExecute: Inherit from model
+    inst RTWMemSecDataConstants: Inherit from model
+    inst RTWMemSecDataInternal: Inherit from model
+    inst RTWMemSecDataParameters: Inherit from model
+    inst ContentPreviewEnabled: on
+    inst winding_type: Wye-wound
+    inst CtrlMode: Velocity control
+    inst Vnom: 560
+    inst Pmax: 75000
+    inst Tmax: 40
+    inst p: 4
+    inst Vdc_on: 100
+    inst Ts: 5e-6
+    inst Tsc: 1e-4
+    inst CtrlType: PI control
+    inst Kp_w: 15
+    inst Ki_w: 50
+    inst Kv_w: 1
+    inst Kaw_w: 10
+    inst RefType: Zero d-axis control
+    inst rpmVec: [0, 3000]
+    inst TqVec: [-100, 0, 100]
+    inst VdcVec: [300, 350]
+    inst PWMMode: SVM: space vector modulation
+    inst ModFactor: 1
+    inst idMatrix: zeros(2,3,2)
+    inst iqMatrix: zeros(2,3,2)
+    inst psim: 0.1194
+    inst Ld: 0.00024
+    inst Lq: 0.00029
+    inst Rs: 0.01
+    inst AxisAlignment: D-axis
+    inst Kp_id: 0.745
+    inst Ki_id: 91
+    inst Kaw_id: 1
+    inst Kp_iq: 0.745
+    inst Ki_iq: 91
+    inst Kaw_iq: 1
+    inst AxisPrio: Q-axis
+    inst ActZC: off
+    inst ActFF: on
+    inst ParamTypeFF: Constant parameters
+    inst LdFF: 0.000395
+    inst LqFF: 0.000395
+    inst psimFF: 0.1194
+    inst idVect: [-200, 0, 200]
+    inst iqVect: [-200, 0, 200]
+    inst LdMatrix: 0.0002 * ones(3, 3)
+    inst LqMatrix: 0.0002 * ones(3, 3)
+    inst psimMatrix: 0.04 * ones(3, 3)
+    inst CPWMMode: SVM: space vector modulation
+    inst SamplingMode: Natural
+    inst fsw: 1000
+
+[158] Reference: PWM Generator
+(2-Level)
+    Position: [1685, -372, 1740, -328]
+    ZOrder: 100000
+    LibrarySourceBlock: sps_lib/Power Electronics/Power Electronics Control/PWM Generator
+(2-Level)
+    LibraryVersion: 9.0
+    FontName: Arial
+    SourceBlock: spsPWMGenerator2LevelLib/PWM Generator
+(2-Level)
+    SourceType: PWM Generator (2-Level)
+    inst RTWMemSecFuncInitTerm: Inherit from model
+    inst RTWMemSecFuncExecute: Inherit from model
+    inst RTWMemSecDataConstants: Inherit from model
+    inst RTWMemSecDataInternal: Inherit from model
+    inst RTWMemSecDataParameters: Inherit from model
+    inst ContentPreviewEnabled: on
+    inst ModulatorType: Three-phase bridge (6 pulses)
+    inst ModulatorMode: Unsynchronized
+    inst Fc: 27*60
+    inst Pc: 90
+    inst nF: 27
+    inst MinMax: [ -1  1 ]
+    inst SamplingTechnique: Natural
+    inst ModulatingSignals: off
+    inst m: 0.8
+    inst Freq: 60
+    inst Phase: 0
+    inst Ts: 0
+    inst ShowCarrierOutport: off
+
+[389] Scope: PWM and AFE Gate
+    Position: [2210, 10, 2255, 110]
+    ZOrder: 100000
+    GraphicalSettings: {"GraphicalSettings":{"LegacySettings":true,"Style":{"Style":{"PlotType":"Auto"}}}}
+    WasSavedAsWebScope: on
+    Floating: off
+    NumInputPorts: 2
+    DataLoggingVariableName: ScopeData4
+
+[14] Reference: Permanent Magnet
+Synchronous Machine
+    Position: [1520, -65, 1610, 15]
+    ZOrder: 5907
+    LibrarySourceBlock: sps_lib/Electrical Machines/Permanent Magnet
+Synchronous Machine
+    LibraryVersion: 9.1
+    SourceBlock: spsPermanentMagnetSynchronousMachineLib/Permanent Magnet
+Synchronous Machine
+    SourceType: Permanent Magnet Synchronous Machine
+    inst RTWMemSecFuncInitTerm: Inherit from model
+    inst RTWMemSecFuncExecute: Inherit from model
+    inst RTWMemSecDataConstants: Inherit from model
+    inst RTWMemSecDataInternal: Inherit from model
+    inst RTWMemSecDataParameters: Inherit from model
+    inst ContentPreviewEnabled: on
+    inst NbPhases: 3
+    inst FluxDistribution: Sinusoidal
+    inst RotorType: Round
+    inst MechanicalLoad: Torque Tm
+    inst PresetModel: No
+    inst ShowDetailedParameters: on
+    inst MeasurementBus: off
+    inst Resistance: 0.5
+    inst Inductance: 8.5e-3
+    inst dqInductances: [8.5e-3,8.5e-3]
+    inst La: 7e-3
+    inst MachineConstant: Flux linkage established by magnets (V.s)
+    inst Flux: 0.1194
+    inst VoltageCst: 86.6271
+    inst TorqueCst: 0.7164
+    inst Flat: 120
+    inst Mechanical: [Jeq 0.0004924 4 0]
+    inst PolePairs: 4
+    inst InitialConditions: [0,0, 0,0]
+    inst InitialConditions5ph: [0 0 0 0 0 0]
+    inst RefAngle: Aligned with phase A axis (original Park)
+    inst IterativeDiscreteModel: Trapezoidal non iterative
+    inst TsBlock: -1
+    inst TsPowergui: 0
+
+[415] Gain: Pgrid_kW
+    Position: [2050, 180, 2110, 210]
+    ZOrder: 100000
+    Gain: 1/1000
+
+[435] Gain: Pmech_signed_kW
+    Position: [1875, 325, 1945, 365]
+    ZOrder: 100000
+    Gain: 1/1000
+
+[258] Product: Product3
+    Position: [2605, -243, 2635, -212]
+    ZOrder: 100000
+
+[280] Product: Product4
+    Position: [2435, -208, 2465, -177]
+    ZOrder: 100000
+
+[285] Product: Product5
+    Position: [2435, -128, 2465, -97]
+    ZOrder: 100000
+
+[288] Product: Product6
+    Position: [2435, -48, 2465, -17]
+    ZOrder: 100000
+
+[392] From: RegFromPgrid
+    Position: [1940, 180, 2000, 210]
+    ZOrder: 100000
+    GotoTag: Pgrid
+
+[390] From: RegFromSpeed
+    Position: [1940, 80, 2000, 110]
+    ZOrder: 100000
+    GotoTag: ElevatorSpeed_mps
+    TagVisibility: global
+
+[391] From: RegFromTe
+    Position: [1940, 130, 2000, 160]
+    ZOrder: 100000
+    GotoTag: Te
+
+[393] From: RegFromVdc
+    Position: [1940, 230, 2000, 260]
+    ZOrder: 100000
+    GotoTag: Vdc
+
+[395] Scope: Regenerative Activity
+    Position: [2150, 142, 2205, 228]
+    ZOrder: 100000
+    GraphicalSettings: {"Style":{"BackgroundColor":[0.12941176470588237,0.12941176470588237,0.12941176470588237],"AxesColor":[0.07058823529411765,0.07058823529411765,0.07058823529411765],"LabelsColor":[0.8509803921568627,0.8509803921568627,0.8509803921568627],"PreserveColors":false,"Visible":[true,true,true,true,true],"LineStyle":["-","-","-","-","-"],"LineWidth":[1.5,1.5,1.5,1.5,1.5],"BarWidth":[0.9,0.9,0.9,0.9,0.9],"LineColor":["auto","auto","auto","auto","auto"],"LineFaceAlpha":[1,1,1,1,1],"LineEdgeAlpha":[1,1,1,1,1],"Marker":["none","none","none","none","none"],"FontSize":8.5,"LineTrueColor":[[1,0.9098039215686274,0.39215686274509803],[1,0.9098039215686274,0.39215686274509803],[1,0.9098039215686274,0.39215686274509803],[1,0.9098039215686274,0.39215686274509803],[0.14901960784313725,0.5490196078431373,0.8666666666666667]],"ChannelNames":"","DefaultLegendLabel":["Elevator Speed Gain","<Electromagnetic torque Te (N*m)>","Pgrid_kW","Vdc","Pmech_signed_kW"],"PlotType":"Auto","NumLinesForDisplays":[1,1,1,2],"OffsetView":true,"LineLabels":["Elevator Speed Gain","<Electromagnetic torque Te (N*m)>","Pgrid_kW","Vdc","Pmech_signed_kW"],"MinimizeControls":false,"LineCache":null},"MeasurementChannel":0,"AxesScalingProperties":{"AxesScaling":"Manual","ExpandOnly":true,"AxesScalingNumUpdates":10,"ScaleAxesLimitsAtStop":false,"YAxisDataRange":80,"AlignYAxis":"Center","AutoScaleXAxisLimits":false,"XAxisDataRange":100,"AlignXAxis":"Center"},"DisplayProperties":{"DisplayLayoutDimensions":[4,1],"DisplayPropertyDefaults":{"MaxYLimMag":720.7204665397339,"MaxYLimReal":720.7204665397339,"MinYLimMag":572.1411809770664,"MinYLimReal":572.1411809770664,"PlotAsMagnitudePhase":false,"ShowGrid":true,"ShowLegend":true,"Title":"%<SignalLabel>","YLabel":""},"DisplayContentCache":{"Title":"","LinePropertiesCache":{},"UserDefinedChannelNames":{},"PlotMagPhase":0},"SerializedDisplays":[{"Title":"%<SignalLabel>","LinePropertiesCache":{},"UserDefinedChannelNames":{},"PlotMagPhase":0,"MaxYLimMag":0.3219884971367927,"MaxYLimReal":0.3219884971367927,"MinYLimMag":0,"MinYLimReal":-0.035777030330834736,"PlotAsMagnitudePhase":false,"ShowGrid":true,"ShowLegend":true,"YLabel":"","NumLines":1,"ShowContent":1,"Placement":0},{"Title":"%<SignalLabel>","LinePropertiesCache":{},"UserDefinedChannelNames":{},"PlotMagPhase":0,"MaxYLimMag":60.76096177825591,"MaxYLimReal":60.76096177825591,"MinYLimMag":0,"MinYLimReal":-7.063903156860918,"PlotAsMagnitudePhase":false,"ShowGrid":true,"ShowLegend":true,"YLabel":"","NumLines":1,"ShowContent":1,"Placement":1},{"Title":"%<SignalLabel>","LinePropertiesCache":{},"UserDefinedChannelNames":{},"PlotMagPhase":0,"MaxYLimMag":10.15004431080829,"MaxYLimReal":10.15004431080829,"MinYLimMag":0,"MinYLimReal":-1.1239773786510103,"PlotAsMagnitudePhase":false,"ShowGrid":true,"ShowLegend":true,"YLabel":"","NumLines":1,"ShowContent":1,"Placement":2},{"Title":"%<SignalLabel>","LinePropertiesCache":{},"UserDefinedChannelNames":{},"PlotMagPhase":0,"MaxYLimMag":720.7204665397339,"MaxYLimReal":720.7204665397339,"MinYLimMag":572.1411809770664,"MinYLimReal":572.1411809770664,"PlotAsMagnitudePhase":false,"ShowGrid":true,"ShowLegend":true,"YLabel":"","NumLines":2,"ShowContent":1,"Placement":3}],"ColorOrder":["auto","auto","auto","auto","auto","auto","auto","auto","auto","auto","auto","auto","auto","auto","auto","auto","auto","auto","auto","auto","auto","auto","auto","auto","auto","auto","auto","auto","auto","auto","auto","auto","auto","auto","auto","auto","auto","auto","auto","auto","auto","auto","auto","auto","auto","auto","auto","auto","auto","auto","auto","auto","auto","auto","auto","auto","auto","auto","auto","auto","auto","auto","auto","auto","auto","auto","auto","auto","auto","auto","auto","auto","auto","auto","auto","auto","auto","auto","auto","auto","auto","auto","auto","auto","auto","auto","auto","auto","auto","auto","auto","auto","auto","auto","auto","auto","auto","auto","auto","auto"]}}
+    WindowPosition: [0.000000,12.000000,1536.000000,841.000000,]
+    ScopeFrameLocation: window
+    WasSavedAsWebScope: on
+    Floating: off
+    MultipleDisplayCache: [{"MaxYLimMag":0.18916306327997173,"MaxYLimReal":0.18916306327997173,"MinYLimMag":0,"MinYLimReal":-0.021018648833083863,"PlotAsMagnitudePhase":false,"ShowGrid":true,"ShowLegend":true,"Title":"%<SignalLabel>","YLabel":""},{"MaxYLimMag":90.682945230896621,"MaxYLimReal":68.504850064549274,"MinYLimMag":0,"MinYLimReal":-90.682945230896621,"PlotAsMagnitudePhase":false,"ShowGrid":true,"ShowLegend":true,"Title":"%<SignalLabel>","YLabel":""},{"MaxYLimMag":7.6217630674896588,"MaxYLimReal":7.6217630674896588,"MinYLimMag":0,"MinYLimReal":-0.84305724050449582,"PlotAsMagnitudePhase":false,"ShowGrid":true,"ShowLegend":true,"Title":"%<SignalLabel>","YLabel":""},{"MaxYLimMag":803.97727913167148,"MaxYLimReal":803.97727913167148,"MinYLimMag":0,"MinYLimReal":-94.22419666588884,"PlotAsMagnitudePhase":false,"ShowGrid":true,"ShowLegend":true,"Title":"%<SignalLabel>","YLabel":""}]
+    NumInputPorts: 5
+    LayoutDimensionsString: [4,1]
+    ShowLegend: on
+    ActiveDisplayYMinimum: -0.021018648833083863
+    ActiveDisplayYMaximum: 0.18916306327997173
+    DataLoggingVariableName: regenScopeData
+
+[177] Saturate: Saturation1
+    Position: [1530, -550, 1560, -520]
+    ZOrder: 100000
+    UpperLimit: 20
+    LowerLimit: -20
+
+[210] Saturate: Saturation2
+    Position: [1630, -365, 1660, -335]
+    ZOrder: 100000
+    UpperLimit: 1
+    LowerLimit: -1
+
+[9] Reference: Series RLC Branch
+    Position: [1166, -75, 1204, 5]
+    ZOrder: 5902
+    BlockRotation: 270
+    BlockMirror: on
+    NameLocation: left
+    LibrarySourceBlock: sps_lib/Passives/Series RLC Branch
+    LibraryVersion: 12.0
+    SourceBlock: spsSeriesRLCBranchLib/Series RLC Branch
+    SourceType: Series RLC Branch
+    inst LConnTagsString: __new0
+    inst RConnTagsString: __new0
+    inst BranchType: C
+    inst Resistance: 0.01
+    inst Inductance: 1e-3
+    inst SetiL0: off
+    inst InitialCurrent: 0
+    inst Capacitance: 3e-3
+    inst Setx0: on
+    inst InitialVoltage: 587
+    inst Measurements: None
+
+[434] Product: Signed Mechanical Power
+    Position: [1800, 325, 1840, 365]
+    ZOrder: 100000
+    Inputs: **
+
+[174] Sum: Sum1
+    Position: [1420, -545, 1440, -525]
+    ZOrder: 100000
+    Inputs: |+-
+
+[181] Sum: Sum2
+    Position: [1440, -455, 1460, -435]
+    ZOrder: 100000
+    Inputs: |+-
+
+[188] Sum: Sum3
+    Position: [1085, -375, 1105, -355]
+    ZOrder: 100000
+    Inputs: |+-
+
+[195] Sum: Sum4
+    Position: [1735, -455, 1755, -435]
+    ZOrder: 100000
+    Inputs: |+-
+
+[202] Sum: Sum5
+    Position: [1770, -555, 1790, -535]
+    ZOrder: 100000
+    Inputs: |+-
+
+[192] Terminator: Terminator
+    Position: [1245, -430, 1265, -410]
+    ZOrder: 100000
+
+[193] Terminator: Terminator1
+    Position: [1195, -585, 1215, -565]
+    ZOrder: 100000
+
+[154] Reference: Three-Phase
+Series RLC Branch
+    Position: [785, -62, 855, 42]
+    ZOrder: 100000
+    AttributesFormatString: \n
+    LibrarySourceBlock: sps_lib/Passives/Three-Phase
+Series RLC Branch
+    LibraryVersion: 9.0
+    SourceBlock: spsThreePhaseSeriesRLCBranchLib/Three-Phase
+Series RLC Branch
+    SourceType: Three-Phase Series RLC Branch
+    inst LConnTagsString: A|B|C
+    inst RConnTagsString: A|B|C
+    inst BranchType: RL
+    inst Resistance: 0.5
+    inst Inductance: 5e-3
+    inst Capacitance: 1e-6
+    inst Measurements: None
+
+[155] Reference: Three-Phase
+V-I Measurement
+    Position: [885, -63, 925, 43]
+    ZOrder: 100000
+    LibrarySourceBlock: sps_lib/Sensors and Measurements/Three-Phase
+V-I Measurement
+    LibraryVersion: 9.1
+    SourceBlock: spsThreePhaseVIMeasurementLib/Three-Phase
+V-I Measurement
+    SourceType: Three-Phase VI Measurement
+    inst RTWMemSecFuncInitTerm: Inherit from model
+    inst RTWMemSecFuncExecute: Inherit from model
+    inst RTWMemSecDataConstants: Inherit from model
+    inst RTWMemSecDataInternal: Inherit from model
+    inst RTWMemSecDataParameters: Inherit from model
+    inst ContentPreviewEnabled: on
+    inst VoltageMeasurement: phase-to-ground
+    inst SetLabelV: off
+    inst LabelV: Vabc
+    inst Vpu: off
+    inst VpuLL: off
+    inst CurrentMeasurement: yes
+    inst SetLabelI: off
+    inst LabelI: Iabc
+    inst Ipu: off
+    inst Pbase: 100e6
+    inst Vbase: 500e3
+    inst OutputType: Complex
+    inst PhasorSimulation: off
+    inst PSBequivalent: 0
+
+[142] Reference: Three-Phase Source
+    Position: [670, -61, 755, 41]
+    ZOrder: 100000
+    LibrarySourceBlock: sps_lib/Sources/Three-Phase Source
+    LibraryVersion: 9.0
+    SourceBlock: spsThreePhaseSourceLib/Three-Phase Source
+    SourceType: Three-Phase Source
+    inst RTWMemSecFuncInitTerm: Inherit from model
+    inst RTWMemSecFuncExecute: Inherit from model
+    inst RTWMemSecDataConstants: Inherit from model
+    inst RTWMemSecDataInternal: Inherit from model
+    inst RTWMemSecDataParameters: Inherit from model
+    inst ContentPreviewEnabled: on
+    inst InternalConnection: Yg
+    inst VoltagePhases: off
+    inst Voltage: 415
+    inst PhaseAngle: 0
+    inst Voltage_phases: [25e3 25e3 25e3]/sqrt(3)
+    inst PhaseAngles_phases: [0 -120 +120]
+    inst Frequency: 50
+    inst NonIdealSource: on
+    inst SpecifyImpedance: off
+    inst Resistance: 0.05
+    inst Inductance: 0.5e-3
+    inst ShortCircuitLevel: 100e6
+    inst BaseVoltage: 25e3
+    inst XRratio: 7
+    inst BusType: swing
+    inst Pref: 10e3
+    inst Qref: 0
+    inst Prefabc: [10e3, 10e3, 10e3]
+    inst Qrefabc: [0, 0, 0]
+    inst Qmin: -inf
+    inst Qmax: inf
+
+[143] Reference: Universal Bridge
+    Position: [970, -97, 1060, 42]
+    ZOrder: 100000
+    LibrarySourceBlock: sps_lib/Power Electronics/Universal Bridge
+    LibraryVersion: 9.0
+    SourceBlock: spsUniversalBridgeLib/Universal Bridge
+    SourceType: Universal Bridge
+    inst RTWMemSecFuncInitTerm: Inherit from model
+    inst RTWMemSecFuncExecute: Inherit from model
+    inst RTWMemSecDataConstants: Inherit from model
+    inst RTWMemSecDataInternal: Inherit from model
+    inst RTWMemSecDataParameters: Inherit from model
+    inst ContentPreviewEnabled: on
+    inst Arms: 3
+    inst SnubberResistance: 1e5
+    inst SnubberCapacitance: inf
+    inst Device: IGBT / Diodes
+    inst Ron: 1e-3
+    inst Lon: 0
+    inst ForwardVoltages: [  0  0  ]
+    inst ForwardVoltage: 0
+    inst GTOparameters: [ 10e-6 , 20e-6 ]
+    inst IGBTparameters: [ 1e-6 , 2e-6 ]
+    inst Measurements: None
+    inst Measurements_2: None
+    inst converterType: Rectifier
+
+[10] Reference: Vdc
+    Position: [1245, -57, 1270, -33]
+    ZOrder: 5903
+    LibrarySourceBlock: sps_lib/Sensors and Measurements/Voltage Measurement
+    LibraryVersion: 9.0
+    UserDataPersistent: on
+    SourceBlock: spsVoltageMeasurementLib/Voltage Measurement
+    SourceType: Voltage Measurement
+    inst RTWMemSecFuncInitTerm: Inherit from model
+    inst RTWMemSecFuncExecute: Inherit from model
+    inst RTWMemSecDataConstants: Inherit from model
+    inst RTWMemSecDataInternal: Inherit from model
+    inst RTWMemSecDataParameters: Inherit from model
+    inst ContentPreviewEnabled: on
+    inst PhasorSimulation: off
+    inst OutputType: Complex
+    inst PSBequivalent: 0
+
+[165] Reference: abc to dq0
+    Position: [1135, -480, 1185, -445]
+    ZOrder: 100000
+    LibrarySourceBlock: sps_lib/Control/abc to dq0
+    LibraryVersion: 9.0
+    FontName: Arial
+    SourceBlock: spsabctodq0Lib/abc to dq0
+    SourceType: abc to dq0 Transformation
+    inst RTWMemSecFuncInitTerm: Inherit from model
+    inst RTWMemSecFuncExecute: Inherit from model
+    inst RTWMemSecDataConstants: Inherit from model
+    inst RTWMemSecDataInternal: Inherit from model
+    inst RTWMemSecDataParameters: Inherit from model
+    inst ContentPreviewEnabled: on
+    inst Alignment: 90 degrees behind phase A axis
+
+[385] Scope: d-axis Current id and id_ref
+    Position: [2225, -255, 2270, -155]
+    ZOrder: 100000
+    GraphicalSettings: {"Style":{"BackgroundColor":[0.12941176470588237,0.12941176470588237,0.12941176470588237],"AxesColor":[0.07058823529411765,0.07058823529411765,0.07058823529411765],"LabelsColor":[0.8509803921568627,0.8509803921568627,0.8509803921568627],"PreserveColors":false,"Visible":[true,true],"LineStyle":["-","-"],"LineWidth":[1.5,1.5],"BarWidth":[0.9,0.9],"LineColor":["auto","auto"],"LineFaceAlpha":[1,1],"LineEdgeAlpha":[1,1],"Marker":["none","none"],"FontSize":8.5,"LineTrueColor":[[1,0.9098039215686274,0.39215686274509803],[0.14901960784313725,0.5490196078431373,0.8666666666666667]],"ChannelNames":"","DefaultLegendLabel":["Demux/1","Manual Switch"],"PlotType":"Auto","NumLinesForDisplays":[2],"OffsetView":true,"LineLabels":["Demux/1","Manual Switch"],"MinimizeControls":false,"LineCache":null},"MeasurementChannel":0,"AxesScalingProperties":{"AxesScaling":"Manual","ExpandOnly":true,"AxesScalingNumUpdates":10,"ScaleAxesLimitsAtStop":true,"YAxisDataRange":80,"AlignYAxis":"Center","AutoScaleXAxisLimits":false,"XAxisDataRange":100,"AlignXAxis":"Center"},"DisplayProperties":{"DisplayLayoutDimensions":[1,1],"DisplayPropertyDefaults":{"MaxYLimMag":32.36863002367681,"MaxYLimReal":32.36863002367681,"MinYLimMag":0,"MinYLimReal":-9.573951344768155,"PlotAsMagnitudePhase":false,"ShowGrid":true,"ShowLegend":false,"Title":"%<SignalLabel>","YLabel":""},"DisplayContentCache":{"Title":"","LinePropertiesCache":{},"UserDefinedChannelNames":{},"PlotMagPhase":0},"SerializedDisplays":[{"Title":"%<SignalLabel>","LinePropertiesCache":{},"UserDefinedChannelNames":{},"PlotMagPhase":0,"MaxYLimMag":32.36863002367681,"MaxYLimReal":32.36863002367681,"MinYLimMag":0,"MinYLimReal":-9.573951344768155,"PlotAsMagnitudePhase":false,"ShowGrid":true,"ShowLegend":false,"YLabel":"","NumLines":2,"ShowContent":1,"Placement":0}],"ColorOrder":["auto","auto","auto","auto","auto","auto","auto","auto","auto","auto","auto","auto","auto","auto","auto","auto","auto","auto","auto","auto","auto","auto","auto","auto","auto","auto","auto","auto","auto","auto","auto","auto","auto","auto","auto","auto","auto","auto","auto","auto","auto","auto","auto","auto","auto","auto","auto","auto","auto","auto","auto","auto","auto","auto","auto","auto","auto","auto","auto","auto","auto","auto","auto","auto","auto","auto","auto","auto","auto","auto","auto","auto","auto","auto","auto","auto","auto","auto","auto","auto","auto","auto","auto","auto","auto","auto","auto","auto","auto","auto","auto","auto","auto","auto","auto","auto","auto","auto","auto","auto"]}}
+    WindowPosition: [0.000000,12.000000,1536.000000,841.000000,]
+    Visible: on
+    ScopeFrameLocation: window
+    WasSavedAsWebScope: on
+    Floating: off
+    MultipleDisplayCache: [{"MaxYLimMag":32.389133382764612,"MaxYLimReal":32.389133382764612,"MinYLimMag":0,"MinYLimReal":-9.75848157655837,"PlotAsMagnitudePhase":false,"ShowGrid":true,"ShowLegend":false,"Title":"%<SignalLabel>","YLabel":""}]
+    NumInputPorts: 2
+    ActiveDisplayYMinimum: -9.75848157655837
+    ActiveDisplayYMaximum: 32.389133382764612
+    DataLoggingVariableName: ScopeData5
+
+[387] Scope: dq Voltages ud and uq
+    Position: [2210, -119, 2255, -26]
+    ZOrder: 100000
+    GraphicalSettings: {"GraphicalSettings":{"LegacySettings":true,"Style":{"Style":{"PlotType":"Auto"}}}}
+    WasSavedAsWebScope: on
+    Floating: off
+    NumInputPorts: 2
+
+[207] Reference: dq0 to abc
+    Position: [1475, -370, 1525, -335]
+    ZOrder: 100000
+    LibrarySourceBlock: sps_lib/Control/dq0 to abc
+    LibraryVersion: 9.0
+    FontName: Arial
+    SourceBlock: spsdq0toabcLib/dq0 to abc
+    SourceType: dq0 to abc Transformation
+    inst RTWMemSecFuncInitTerm: Inherit from model
+    inst RTWMemSecFuncExecute: Inherit from model
+    inst RTWMemSecDataConstants: Inherit from model
+    inst RTWMemSecDataInternal: Inherit from model
+    inst RTWMemSecDataParameters: Inherit from model
+    inst ContentPreviewEnabled: on
+    inst Alignment: 90 degrees behind phase A axis
+
+[31] Reference: powergui
+    Position: [685, -155, 766, -116]
+    ZOrder: 5923
+    Priority: 1
+    LibrarySourceBlock: sps_lib/powergui
+    LibraryVersion: 13
+    SourceBlock: spspowerguiLib/powergui
+    SourceType: PSB option menu block
+    inst RTWMemSecFuncInitTerm: Inherit from model
+    inst RTWMemSecFuncExecute: Inherit from model
+    inst RTWMemSecDataConstants: Inherit from model
+    inst RTWMemSecDataInternal: Inherit from model
+    inst RTWMemSecDataParameters: Inherit from model
+    inst ContentPreviewEnabled: on
+    inst SimulationMode: Discrete
+    inst SampleTime: 5e-6
+    inst frequency: 60
+    inst Iterations: 50
+    inst frequencyindice: 0
+    inst Pbase: 100e6
+    inst ErrMax: 1e-4
+    inst UnitsV: kV
+    inst UnitsW: MW
+    inst buscounter: 0
+    inst FunctionMessages: off
+    inst echomessages: off
+    inst EnableUseOfTLC: off
+    inst CurrentSourceSwitches: off
+    inst DisableSnubberDevices: off
+    inst DisableRonSwitches: off
+    inst DisableVfSwitches: off
+    inst DisplayEquations: off
+    inst AutomaticDiscreteSolvers: off
+    inst SolverType: Tustin/Backward Euler (TBE)
+    inst Interpol: off
+    inst ExternalGateDelay: off
+    inst methode: off
+    inst Ts: 100
+    inst x0status: blocks
+    inst SPID: on
+    inst SwTol: 0
+    inst HookPort: off
+    inst NonlinearTolerance: 1e-4
+    inst nMaxIteration: 100
+    inst ContinueOnMaxIteration: off
+    inst RestoreLinks: warning
+    inst ResistiveCurrentMeasurement: off
+    inst Frange: [0:2:500]
+    inst Ylog: off
+    inst Xlog: on
+    inst ShowGrid: off
+    inst save: off
+    inst variable: ZData
+    inst structure: 0
+    inst ZoomFFT: off
+    inst StartTime: 0.0
+    inst cycles: 1
+    inst DisplayStyle: 1
+    inst fundamental: 60
+    inst FreqAxis: off
+    inst MaxFrequency: 1000
+    inst frequencyindicesteady: 1
+    inst RmsSteady: 1
+    inst display: off
+

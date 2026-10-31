@@ -1,0 +1,118 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><title>Elevator Drive Lab: PMSM, DC link, Regen, Supercap</title>
+<style>
+:root{--bg:#fff;--fg:#1a1d24;--mut:#667085;--card:#f3f4f8;--bd:#d5d9e2;--c1:#2563eb;--c2:#16a34a;--c3:#dc2626;--c4:#d97706;--c5:#7c3aed;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#13151a;--fg:#e6e8ee;--mut:#9aa1b0;--card:#1c1f26;--bd:#343842;--c1:#60a5fa;--c2:#4ade80;--c3:#f87171;--c4:#fbbf24;--c5:#a78bfa;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#13151a;--fg:#e6e8ee;--mut:#9aa1b0;--card:#1c1f26;--bd:#343842;--c1:#60a5fa;--c2:#4ade80;--c3:#f87171;--c4:#fbbf24;--c5:#a78bfa;color-scheme:dark}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;padding:12px;background:var(--bg);color:var(--fg);font:14px/1.4 system-ui,-apple-system,Segoe UI,Roboto,sans-serif;max-width:1200px;margin:auto}
+h1{font-size:18px;margin:4px 0}.s{color:var(--mut);margin:0 0 8px;font-size:12.5px}
+.bar{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-bottom:8px}
+button,select{background:var(--card);color:var(--fg);border:1px solid var(--bd);border-radius:8px;padding:7px 11px;font:inherit;cursor:pointer}
+button.on{background:var(--c1);color:#fff;border-color:var(--c1)}
+#sl{display:grid;grid-template-columns:repeat(auto-fit,minmax(175px,1fr));gap:6px 14px;margin-bottom:8px}
+#sl label{font-size:12px;color:var(--mut);display:block}#sl b{color:var(--fg)}#sl input{width:100%}
+svg{width:100%;height:auto;background:var(--card);border:1px solid var(--bd);border-radius:10px}
+.bx rect,.bx circle{fill:var(--bg);stroke:var(--bd);stroke-width:1.5}
+.tx{font:12px system-ui,sans-serif;fill:var(--fg)}.sm{font:11px system-ui,sans-serif;fill:var(--mut)}
+.wire{fill:none;stroke:var(--bd);stroke-width:3}.fl{fill:none;stroke-linecap:round;stroke-dasharray:9 7}
+.kpi{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:8px;margin:10px 0}
+.kpi div{background:var(--card);border:1px solid var(--bd);border-radius:8px;padding:6px 9px;font-size:11.5px;color:var(--mut)}.kpi b{display:block;font-size:16px;color:var(--fg)}
+#scs{display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:10px}
+canvas{width:100%;height:auto;background:var(--card);border:1px solid var(--bd);border-radius:8px}
+.n{color:var(--mut);font-size:12px;margin-top:10px}
+</style></head><body>
+<h1>Elevator drive lab: PMSM, DC link, brake chopper, supercap regen</h1>
+<p class="s">Arrow direction = real current direction, thickness = magnitude. <b style="color:var(--c1)">Blue</b> power flowing toward the load, <b style="color:var(--c2)">green</b> power returning or charging the supercap, <b style="color:var(--c3)">red</b> energy burnt in the brake resistor.</p>
+<div class="bar"><button id="s1">Stage 1 · Conventional (brake resistor)</button><button id="s2">Stage 2 · + Supercap via bidirectional DC-DC</button>
+<select id="mode"><option value="alt">Trips: up / down alternate</option><option value="up">Up only</option><option value="down">Down only</option></select>
+<button id="pp">Pause</button><button id="rs">Reset</button></div>
+<div id="sl"></div>
+<svg id="sch" viewBox="0 0 900 340">
+<g id="fl"></g>
+<g class="bx"><rect x="10" y="110" width="90" height="50" rx="6"/><rect x="130" y="110" width="80" height="50" rx="6"/><rect x="240" y="70" width="60" height="140" rx="6"/><rect id="bk" x="215" y="10" width="110" height="40" rx="6"/><rect x="350" y="105" width="90" height="60" rx="6"/><circle cx="520" cy="135" r="38"/>
+<g id="scg"><rect x="215" y="232" width="110" height="40" rx="6"/><rect x="215" y="294" width="110" height="38" rx="6"/></g></g>
+<g class="tx" text-anchor="middle"><text x="55" y="131">3φ GRID</text><text x="55" y="148" class="sm">400 V</text><text x="170" y="131">DIODE</text><text x="170" y="148">RECTIFIER</text>
+<text x="270" y="118">DC LINK</text><text x="270" y="136">C_dc</text><text x="270" y="152" class="sm">4.7 mF</text>
+<text x="270" y="27">BRAKE CHOPPER</text><text x="270" y="43" class="sm">+ R_brake</text><text x="395" y="131">INVERTER</text><text x="395" y="148" class="sm">3φ VSI</text>
+<text x="520" y="131">PMSM</text><text x="520" y="148" class="sm">gearless</text>
+<g id="scl"><text x="270" y="248">BIDIR DC-DC</text><text x="270" y="264" class="sm">buck / boost</text><text x="270" y="311">SUPERCAP</text><text x="270" y="326" class="sm">bank</text></g></g>
+<g class="tx"><text id="tIr" x="100" y="190"></text><text id="tPg" x="100" y="206"></text><text id="tVdc" x="306" y="96" style="font-weight:600"></text><text id="tIi" x="355" y="190"></text><text id="tPi" x="355" y="206"></text>
+<text id="tIb" x="332" y="24"></text><text id="tBs" x="332" y="40"></text>
+<g id="scx"><text id="tIs" x="332" y="248"></text><text id="tD" x="332" y="264"></text><text id="tVs" x="332" y="308"></text><text id="tIc" x="332" y="324"></text></g>
+<text id="tIq" x="468" y="190"></text><text id="tFe" x="468" y="206"></text><text id="tM" x="468" y="222"></text>
+<text id="tV" x="800" y="110"></text><text id="tF" x="800" y="128"></text><text id="tPm" x="800" y="146"></text><text id="tL" x="800" y="164"></text></g>
+<line x1="670" y1="70" x2="795" y2="70" stroke="var(--bd)"/><line x1="670" y1="300" x2="795" y2="300" stroke="var(--bd)"/>
+<text class="sm" x="640" y="74">top</text><text class="sm" x="620" y="304">bottom</text>
+<line id="r1" x1="711" y1="40" x2="711" y2="70" stroke="var(--mut)" stroke-width="2"/><line id="r2" x1="759" y1="40" x2="759" y2="70" stroke="var(--mut)" stroke-width="2"/>
+<rect id="cab" x="690" y="70" width="44" height="40" rx="4" fill="var(--bg)" stroke="var(--c1)" stroke-width="2"/><rect id="cabm" x="693" y="100" width="38" height="0" fill="var(--c4)" opacity=".6"/>
+<rect id="cw" x="737" y="70" width="44" height="52" rx="4" fill="var(--bg)" stroke="var(--mut)" stroke-width="2"/><text class="sm" id="tcw" x="745" y="96">CW</text>
+<g id="sh"><circle cx="735" cy="40" r="24" fill="var(--bg)" stroke="var(--fg)" stroke-width="2"/><line x1="735" y1="18" x2="735" y2="62" stroke="var(--fg)"/><line x1="713" y1="40" x2="757" y2="40" stroke="var(--fg)"/></g>
+</svg>
+<div class="kpi" id="kp"></div>
+<div id="scs"></div>
+<p class="n">Model: average-value (no PWM ripple), SPM PMSM with id=0 control and load-weighing pre-torque, 12 pole pairs, 0.3 m sheave, counterweight = car + 50% rated load (1400 kg), mechanical brake holds at standstill. Diode rectifier = 540 V source behind 0.4 Ω (cannot return power). Brake chopper = hysteresis ON/OFF (15 V band). Stage 2 DC-DC holds the DC link at its set-point with a 2 kW/V droop law, limited by converter current and supercap voltage window (50 to 100% of max V). Efficiencies: inverter 97%, DC-DC 97%. Not a switching-level or thermal model.</p>
+<script>
+const $=i=>document.getElementById(i),DT=2.5e-4,P={stage:1,mode:'alt',speed:1};
+const SL=[['load','Car load',0,1000,50,800,'kg'],['H','Travel height',10,60,5,30,'m'],['vmax','Max speed',.5,4,.1,2,'m/s'],['acc','Accel limit',.3,1.5,.1,1,'m/s²'],['rbr','Brake resistor',8,80,2,20,'Ω'],['vbr','Chopper ON level',580,680,5,600,'V'],['csc','Supercap C',2,40,1,15,'F'],['vscm','Supercap max V',100,300,10,200,'V'],['ilim','DC-DC current limit',10,200,5,100,'A'],['vref','DC-link set-point',545,590,1,560,'V'],['speed','Sim speed',.5,10,.5,1,'×']];
+SL.forEach(([k,l,a,b,s,v,u])=>{P[k]=v;$('sl').insertAdjacentHTML('beforeend',`<label>${l}: <b id="v_${k}">${v}</b> ${u}<input type="range" id="${k}" min="${a}" max="${b}" step="${s}" value="${v}"></label>`)});
+SL.forEach(([k])=>$(k).oninput=e=>{P[k]=+e.target.value;$('v_'+k).textContent=e.target.value});
+const FL=[['M100,135 H130',()=>S.o.Ir,'--c1','--c2'],['M210,135 H240',()=>S.o.Ir,'--c1','--c2'],['M300,135 H350',()=>S.o.Ii,'--c1','--c2'],['M270,70 V50',()=>S.o.Ib,'--c3','--c3'],['M270,210 V232',()=>S.o.Isd,'--c2','--c1'],['M270,272 V294',()=>S.o.Is,'--c2','--c1'],['M440,135 H482',()=>S.o.Pe/S.o.V,'--c1','--c2'],['M558,135 H640 V40 H711',()=>S.o.Pm/200,'--c1','--c2']];
+$('fl').innerHTML=FL.map(f=>`<path class="wire" d="${f[0]}"/>`).join('')+FL.map(f=>`<path class="fl" d="${f[0]}"/>`).join('');
+const FP=[...$('fl').querySelectorAll('.fl')];FL.forEach((f,i)=>{f.el=FP[i];f.o=0});
+const KP=[['kg','Grid energy drawn'],['km','Motoring (DC side)'],['kr','Regen into DC link'],['kb','Burnt in brake R'],['ks','Into supercap'],['ko','Out of supercap'],['kw','Regen wasted'],['kq','Supercap usable SOC']];
+$('kp').innerHTML=KP.map(k=>`<div>${k[1]}<b id="${k[0]}">0</b></div>`).join('');
+const SC=[['Speed m/s (+up) · rope force kN',[['v','--c1','speed'],['F','--c4','force']],800,1],['Power kW (+ = toward load / charging)',[['pm','--c1','shaft'],['pg','--c4','grid'],['pb','--c3','brake'],['ps','--c2','SC']],800,1],['DC-link voltage V',[['vdc','--c1','Vdc']],800,0],['Supercap: V and I (A, + charging)',[['vsc','--c2','Vsc'],['isc','--c4','Isc']],800,0],['DC-side currents A',[['ir','--c4','rectifier'],['ii','--c1','inverter'],['ibr','--c3','brake'],['isd','--c2','to DC-DC']],800,1],['Phase currents A (last 0.8 s)',[['ca','--c1','ia'],['cb','--c2','ib'],['cc','--c5','ic']],800,1],['Phase voltages V (last 0.8 s)',[['wa','--c1','va'],['wb','--c2','vb'],['wc','--c5','vc']],800,1]];
+$('scs').innerHTML=SC.map((s,i)=>`<canvas id="c${i}" width="600" height="190"></canvas>`).join('');
+let S,L,F,paused=false;
+const push=(k,v)=>{const a=L[k];a.push(v);if(a.length>800)a.shift()};
+function reset(){S={fr:0,v:0,s:0,af:0,dir:P.mode=='down'?-1:1,ph:'dwell',tm:1,th:0,ang:0,Vdc:540,Vsc:.65*P.vscm,brk:0,a1:0,a2:0,E:{g:0,m:0,rg:0,br:0,si:0,so:0},o:{Ir:0,Ii:0,Ib:0,Isd:0,Is:0,Pe:0,Pm:0,V:540}};if(P.mode=='down')S.fr=1;L={};SC.forEach(s=>s[1].forEach(x=>L[x[0]]=[]));step(DT)}
+function step(dt){
+const g=9.81,r=.3,pp=12,lam=2.5,R=.5,Ld=.02,mcw=1400;let aup=0,vup=0,F=0;
+if(S.ph=='dwell'){S.tm-=dt;if(S.tm<=0){S.ph='move';S.s=0;S.fr=S.dir>0?0:1}}
+else{const d=P.H-S.s,vt=Math.max(.03,Math.min(P.vmax,Math.sqrt(1.6*P.acc*Math.max(d,0)))),ar=Math.max(-P.acc,Math.min(P.acc,(vt-S.v)/.15));
+S.af+=(ar-S.af)*dt/.25;S.v=Math.max(0,S.v+S.af*dt);S.s+=S.v*dt;
+if(S.s>=P.H-.005){S.ph='dwell';S.tm=3;S.v=0;S.af=0;S.fr=S.dir>0?1:0;if(P.mode=='alt')S.dir*=-1}else S.fr=S.dir>0?S.s/P.H:1-S.s/P.H}
+if(S.ph=='move'){aup=S.dir*S.af;vup=S.dir*S.v;const m=1000+P.load;F=(m-mcw)*g+(m+mcw+300)*aup+300*Math.tanh(vup/.05)}
+const T=F*r,wm=vup/r,we=pp*wm,iq=T/(1.5*pp*lam),vq=R*iq+we*lam,vd=-we*Ld*iq;S.th+=we*dt;S.ang+=wm*dt;
+const Pm=F*vup,Pe=1.5*vq*iq,Pi=Pe>=0?Pe/.97:Pe*.97,V=Math.max(S.Vdc,50),Ii=Pi/V,Ir=Math.max(0,(540-S.Vdc)/.4);
+if(S.Vdc>P.vbr)S.brk=1;else if(S.Vdc<P.vbr-15)S.brk=0;const Ib=S.brk?S.Vdc/P.rbr:0;
+let Ps=0,Pc=0,Is=0;S.Vsc=Math.min(S.Vsc,P.vscm);
+if(P.stage==2){const vm=P.vscm,Pl=P.ilim*S.Vsc,cl=x=>Math.max(0,Math.min(1,x));let p=2000*(S.Vdc-P.vref);
+p*=p>0?cl((vm-S.Vsc)/(.03*vm)):cl((S.Vsc-.5*vm)/(.03*vm));Pc=p>0?p*.97:p/.97;Pc=Math.max(-Pl,Math.min(Pl,Pc));Ps=Pc>0?Pc/.97:Pc*.97;
+S.Vsc=Math.sqrt(Math.max(1,S.Vsc*S.Vsc+2*Pc*dt/P.csc));Is=Pc/S.Vsc}
+const Isd=Ps/V;S.Vdc+=dt*(Ir-Ii-Ib-Isd)/4.7e-3;
+const E=S.E;E.g+=Ir*V*dt;E.m+=Math.max(Pi,0)*dt;E.rg+=Math.max(-Pi,0)*dt;E.br+=Ib*V*dt;E.si+=Math.max(Ps,0)*dt;E.so+=Math.max(-Ps,0)*dt;
+const q=2.0944,th=S.th,pv=a=>vq*Math.sin(a)+vd*Math.cos(a);
+S.o={vup,F,Pm,Pe,Pi,Ir,Ii,Ib,Isd,Is,Ps,iq,fe:we/6.2832,m:Math.hypot(vq,vd)/(V/1.732),V,vph:Math.hypot(vq,vd)};
+S.a1+=dt;if(S.a1>=.001){S.a1-=.001;push('ca',iq*Math.sin(th));push('cb',iq*Math.sin(th-q));push('cc',iq*Math.sin(th+q));push('wa',pv(th));push('wb',pv(th-q));push('wc',pv(th+q))}
+S.a2+=dt;if(S.a2>=.05){S.a2-=.05;push('v',vup);push('F',F/1000);push('pm',Pm/1000);push('pg',Ir*V/1000);push('pb',Ib*V/1000);push('ps',Ps/1000);push('vdc',S.Vdc);push('vsc',S.Vsc);push('isc',Is);push('ir',Ir);push('ii',Ii);push('ibr',Ib);push('isd',Isd)}}
+function scope(cv,ser,title,z,lines){const x=cv.getContext('2d'),W=cv.width,H=cv.height,cs=getComputedStyle(document.documentElement),col=k=>cs.getPropertyValue(k).trim();x.clearRect(0,0,W,H);
+let lo=1e9,hi=-1e9;ser.forEach(s=>L[s[0]].forEach(v=>{if(v<lo)lo=v;if(v>hi)hi=v}));if(z){lo=Math.min(lo,0);hi=Math.max(hi,0)}lines.forEach(l=>{lo=Math.min(lo,l.y);hi=Math.max(hi,l.y)});
+if(!isFinite(lo)){lo=0;hi=1}if(hi-lo<1e-6){hi+=1;lo-=1}const pd=(hi-lo)*.08;lo-=pd;hi+=pd;const ml=46,mt=34,mb=6,pw=W-ml-8,ph=H-mt-mb,Y=v=>mt+ph*(1-(v-lo)/(hi-lo));
+x.font='11px system-ui';x.lineWidth=1;for(let i=0;i<=4;i++){const v=lo+(hi-lo)*i/4,y=Y(v);x.strokeStyle=col('--bd');x.beginPath();x.moveTo(ml,y);x.lineTo(W-8,y);x.stroke();x.fillStyle=col('--mut');x.fillText(v.toFixed(hi-lo<10?1:0),3,y+4)}
+if(lo<0&&hi>0){x.strokeStyle=col('--mut');x.beginPath();x.moveTo(ml,Y(0));x.lineTo(W-8,Y(0));x.stroke()}
+lines.forEach(l=>{x.strokeStyle=col(l.c);x.setLineDash([5,4]);x.beginPath();x.moveTo(ml,Y(l.y));x.lineTo(W-8,Y(l.y));x.stroke();x.setLineDash([])});
+x.fillStyle=col('--fg');x.font='bold 12px system-ui';x.fillText(title,6,14);x.font='11px system-ui';let lx=6;
+ser.forEach(s=>{const d=L[s[0]];x.strokeStyle=col(s[1]);x.lineWidth=1.6;x.beginPath();d.forEach((v,i)=>{const px=ml+pw*(i+800-d.length)/799;i?x.lineTo(px,Y(v)):x.moveTo(px,Y(v))});x.stroke();
+const t=s[2]+' '+(d.length?d[d.length-1].toFixed(1):'');x.fillStyle=col(s[1]);x.fillText(t,lx,28);lx+=x.measureText(t).width+14})}
+const T=(i,t)=>$(i).textContent=t,f1=(v,n=1)=>v.toFixed(n);
+function render(){const o=S.o,E=S.E,V=S.Vdc;
+FL.forEach(f=>{const v=f[1](),a=Math.abs(v);f.el.style.stroke=`var(${v>=0?f[2]:f[3]})`;f.el.style.strokeWidth=2+Math.min(5,a/12);f.el.style.opacity=a<.3?.1:1;f.o-=Math.sign(v)*(1+Math.min(a,60)/8);f.el.setAttribute('stroke-dashoffset',f.o)});
+T('tIr',`Irect ${f1(o.Ir)} A`);T('tPg',`Pgrid ${f1(o.Ir*o.V/1000)} kW`);T('tVdc',`Vdc ${f1(V)} V`);T('tIi',`Iinv ${f1(o.Ii)} A`);T('tPi',`Pinv ${f1(o.Pi/1000)} kW`);
+T('tIb',`Ibr ${f1(o.Ib)} A · ${f1(o.Ib*o.V/1000)} kW`);T('tBs',S.brk?'CHOPPER ON':'chopper off');$('bk').style.stroke=S.brk?'var(--c3)':'';$('bk').style.strokeWidth=S.brk?3:'';
+T('tIs',`Idc ${f1(o.Isd)} A`);T('tD',`duty D≈${f1(S.Vsc/V,2)}  ${o.Ps>50?'BUCK: charging':o.Ps<-50?'BOOST: discharging':'idle'}`);T('tVs',`Vsc ${f1(S.Vsc)} V`);T('tIc',`Isc ${f1(o.Is)} A  (${f1(o.Is*S.Vsc/1000)} kW)`);
+T('tIq',`iq ${f1(o.iq)} A pk`);T('tFe',`fe ${f1(Math.abs(o.fe))} Hz · Vph ${f1(o.vph,0)} V`);T('tM',`mod. index ${f1(o.m,2)}${o.m>1?' >1 !':''}`);$('tM').style.fill=o.m>1?'var(--c3)':'';
+T('tV',`v ${f1(o.vup,2)} m/s`);T('tF',`F ${f1(o.F/1000,2)} kN`);T('tPm',`Pshaft ${f1(o.Pm/1000)} kW`);T('tL',`${o.Pm>50?'MOTORING':o.Pm<-50?'REGENERATING':S.ph=='dwell'?'standstill':'coasting'}`);
+const ct=70+(1-S.fr)*190;$('cab').setAttribute('y',ct);$('cw').setAttribute('y',70+S.fr*190);$('r1').setAttribute('y2',ct);$('r2').setAttribute('y2',70+S.fr*190);$('tcw').setAttribute('y',96+S.fr*190);
+const mh=38*P.load/1000;$('cabm').setAttribute('y',ct+37-mh);$('cabm').setAttribute('height',mh);$('sh').setAttribute('transform',`rotate(${S.ang*57.3} 735 40)`);
+const op=P.stage==2?1:.25;$('scg').style.opacity=op;$('scl').style.opacity=op;$('scx').style.opacity=op;
+const w=j=>f1(j/3600,1)+' Wh',vm=P.vscm;
+T('kg',w(E.g));T('km',w(E.m));T('kr',w(E.rg));T('kb',w(E.br));T('ks',w(E.si));T('ko',w(E.so));T('kw',E.rg>1?f1(E.br/E.rg*100,0)+' %':'-');T('kq',P.stage==2?f1(Math.max(0,(S.Vsc**2-(.5*vm)**2)/(vm**2-(.5*vm)**2))*100,0)+' %':'-');
+const ln=[null,null,[{y:P.vbr,c:'--c3'},{y:P.vref,c:'--c2'},{y:540,c:'--mut'}],[{y:P.vscm,c:'--c3'},{y:.5*P.vscm,c:'--c3'}]];
+SC.forEach((s,i)=>scope($('c'+i),s[1],s[0],s[3],ln[i]||[]))}
+let last=0;function frame(ts){const fd=Math.min(.033,(ts-last)/1000||.016);last=ts;if(!paused){const n=Math.round(fd*P.speed/DT);for(let i=0;i<n;i++)step(DT)}render();requestAnimationFrame(frame)}
+function stage(n){P.stage=n;$('s1').classList.toggle('on',n==1);$('s2').classList.toggle('on',n==2);reset()}
+$('s1').onclick=()=>stage(1);$('s2').onclick=()=>stage(2);$('mode').onchange=e=>{P.mode=e.target.value;reset()};$('rs').onclick=reset;
+$('pp').onclick=()=>{paused=!paused;$('pp').textContent=paused?'Resume':'Pause'};
+stage(1);requestAnimationFrame(frame);
+</script></body></html>

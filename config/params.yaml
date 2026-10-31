@@ -1,0 +1,100 @@
+# Regenerative Supercapacitor Elevator Energy Manager
+# System Parameters Configuration
+# Note: Values not found in the simulator source are explicitly marked [ASSUMED] with units.
+
+lift:
+  # Values from Elevator Drive Lab simulator
+  m_car_empty_kg: 1000.0      # Empty car mass (kg) [FOUND in simulator: 1000 + P.load]
+  m_load_default_kg: 800.0    # Default car passenger load (kg) [FOUND in simulator]
+  m_load_rated_kg: 1000.0     # Rated load capacity (kg) [FOUND in simulator: max 1000 kg]
+  m_cw_kg: 1400.0             # Counterweight mass (kg) [FOUND: mcw = 1400 = car + 50% rated load]
+  m_roping_inertia_kg: 300.0  # Roping and equivalent inertia mass (kg) [FOUND: in (m + mcw + 300)*a]
+  travel_height_m: 30.0       # Travel height (m) [FOUND: P.H default 30]
+  v_max_mps: 2.0              # Maximum rated speed (m/s) [FOUND: P.vmax default 2.0]
+  acc_max_mps2: 1.0           # Maximum acceleration (m/s^2) [FOUND: P.acc default 1.0]
+  acc_filter_tau_s: 0.25      # Acceleration filter time constant (s) [FOUND: tau=0.25s]
+  decel_lookahead_tau_s: 0.15 # Deceleration lookahead time constant (s) [FOUND: 0.15s]
+  decel_factor: 1.6           # Kinematic decel factor sqrt(1.6*acc*d) [FOUND: 1.6]
+  dwell_time_s: 3.0           # Floor dwell time (s) [FOUND: S.tm = 3s]
+  g_mps2: 9.81                # Gravity acceleration (m/s^2) [FOUND: g=9.81]
+  
+  # Friction model: F_fric = F_coulomb * tanh(v / v_th) + F_viscous * v
+  friction_coulomb_N: 300.0   # Breakaway / Coulomb friction force (N) [FOUND: 300 * tanh(v/0.05)]
+  friction_tanh_v_th_mps: 0.05 # Tanh velocity smoothing threshold (m/s) [FOUND: 0.05]
+  friction_viscous_N_per_mps: 0.0 # Viscous friction coefficient (N/(m/s)) [FOUND: 0.0 in html]
+
+motor:
+  r_sheave_m: 0.3             # Traction sheave radius (m) [FOUND: r = 0.3]
+  pole_pairs: 12              # PMSM pole pairs [FOUND: pp = 12]
+  flux_linkage_Wb: 2.5        # Permanent magnet flux linkage lambda (V*s or Wb) [FOUND: lam = 2.5]
+  R_stator_ohm: 0.5           # Stator phase resistance (ohm) [FOUND: R = 0.5]
+  Ld_H: 0.02                  # Direct-axis inductance (H) [FOUND: Ld = 0.02]
+  Lq_H: 0.02                  # Quadrature-axis inductance (H) [FOUND: SPM PMSM Lq=Ld=0.02]
+  eta_motor: 1.0              # Stator copper losses included in R_stator [FOUND: 1.0 (exact I^2*R model)]
+  eta_inverter: 0.97          # Three-phase VSI inverter efficiency [FOUND: 0.97 (97%)]
+
+electrical_grid:
+  V_grid_line_rms_V: 400.0    # 3-phase AC grid line-to-line RMS voltage (V) [FOUND: 400 V]
+  f_grid_Hz: 50.0             # Grid frequency (Hz) [FOUND: 50 Hz]
+  V_rectifier_noload_V: 540.0 # Diode rectifier no-load DC voltage (V) [FOUND: 540 V]
+  R_rectifier_internal_ohm: 0.4 # Diode rectifier internal resistance (ohm) [FOUND: 0.4 ohm]
+  C_dc_F: 0.0047              # DC link capacitance (F = 4.7 mF) [FOUND: 4.7e-3]
+  V_dc_nominal_V: 540.0       # Nominal DC link voltage (V) [FOUND: 540 V]
+  
+  # DC bus auxiliary load
+  P_aux_idle_W: 250.0         # Auxiliary DC load during idle/run (W) [ASSUMED, units: W]
+  P_aux_door_W: 350.0         # Additional DC load during door opening/closing (W) [ASSUMED, units: W]
+
+brake_chopper:
+  R_brake_ohm: 20.0           # Braking resistor resistance (ohm) [FOUND: P.rbr default 20]
+  V_brake_on_V: 600.0         # Chopper ON threshold voltage (V) [FOUND: P.vbr default 600]
+  V_brake_hysteresis_V: 15.0  # Chopper hysteresis band (V) [FOUND: OFF at V_brake_on - 15 = 585 V]
+
+supercapacitor:
+  C_sc_F: 15.0                # Supercapacitor bank nominal capacitance (F) [FOUND: P.csc default 15]
+  V_sc_max_V: 200.0           # Supercapacitor maximum voltage (V) [FOUND: P.vscm default 200]
+  V_sc_min_V: 100.0           # Supercapacitor minimum operating voltage (V) [FOUND: 0.5 * Vmax = 100]
+  ESR_sc_ohm: 0.035           # Internal equivalent series resistance (ohm) [ASSUMED, units: ohm]
+  N_series: 75                # Number of cells in series [ASSUMED, units: integer]
+  N_parallel: 1               # Number of parallel strings [ASSUMED, units: integer]
+  C_cell_F: 1125.0            # Single cell capacitance (F) [ASSUMED: 75 * 15 F = 1125 F, units: F]
+  ESR_cell_ohm: 0.000466      # Single cell ESR (ohm) [ASSUMED: 0.035 / 75 = 0.466 mOhm, units: ohm]
+  self_discharge_pct_day: 1.0 # Self-discharge energy loss rate per day (%/day) [ASSUMED, units: %/day]
+  
+  # Thermal properties
+  R_th_K_per_W: 0.85          # Module thermal resistance to ambient (K/W) [ASSUMED, units: K/W]
+  C_th_J_per_K: 2500.0        # Module thermal heat capacity (J/K) [ASSUMED, units: J/K]
+  T_amb_C: 25.0               # Nominal ambient temperature (deg C) [ASSUMED, units: deg C]
+  T_sc_max_C: 65.0            # Maximum permissible SC temperature (deg C) [ASSUMED, units: deg C]
+
+dcdc_converter:
+  I_dcdc_max_A: 100.0         # Bidirectional DC-DC current limit (A) [FOUND: P.ilim default 100]
+  P_dcdc_max_W: 20000.0       # DC-DC max power rating (W) [FOUND: 100 A * 200 V = 20 kW]
+  V_dc_ref_V: 560.0           # DC link voltage setpoint for droop law (V) [FOUND: P.vref default 560]
+  droop_gain_W_per_V: 2000.0  # Droop control gain (W/V) [FOUND: 2000 W/V]
+  taper_window_pct: 0.03      # Voltage margin for smooth current tapering [FOUND: 0.03 (3%)]
+  eta_dcdc: 0.97              # DC-DC conversion efficiency [FOUND: 0.97 (97%)]
+  L_filter_H: 0.0015          # DC-DC filter inductance (H) [ASSUMED, units: H]
+  f_sw_Hz: 20000.0            # Switching frequency (Hz) [ASSUMED, units: Hz]
+
+simulation:
+  dt_sim_s: 0.00025           # Physics simulation time step (s) [FOUND: DT = 2.5e-4]
+  dt_aggregate_s: 1.0         # Logging, database, and RL aggregation time step (s) [FOUND: 1.0 s]
+
+tariffs:
+  currency_symbol: "₹"
+  rate_offpeak_per_kWh: 4.50  # Off-peak tariff 22:00-06:00 (₹/kWh) [PLACEHOLDER, editable by user]
+  rate_normal_per_kWh: 7.50   # Normal tariff 06:00-09:00, 12:00-18:00, 21:00-22:00 (₹/kWh) [PLACEHOLDER]
+  rate_peak_per_kWh: 11.50    # Peak tariff 09:00-12:00, 18:00-21:00 (₹/kWh) [PLACEHOLDER]
+  demand_rate_per_kW_month: 450.0 # Monthly demand charge per peak kW (₹/kW/month) [PLACEHOLDER]
+  demand_window_minutes: 15   # Rolling demand window (minutes) [ASSUMED, units: min]
+  grid_emission_factor_kg_per_kWh: 0.72 # CO2 emission intensity (kg CO2 / kWh) [ASSUMED, units: kg/kWh]
+  capital_cost_system_INR: 350000.0     # Estimated capital installation cost (₹) [PLACEHOLDER, user-editable]
+
+rl_reward_weights:
+  lambda1_peak: 5.0           # Penalty for increasing billing window running peak kW [ASSUMED]
+  lambda2_brake: 0.005        # Penalty per Wh of wasted brake energy dumped [ASSUMED]
+  lambda3_action_rate: 0.0001 # Action smoothing penalty |delta P_sc| [ASSUMED]
+  lambda4_aging: 0.001        # Battery / supercap aging wear penalty [ASSUMED]
+  lambda5_violation: 50.0     # Hard safety violation penalty [ASSUMED]
+  beta_stored_value: 0.85     # Value factor for stored energy valued at future price [ASSUMED]
